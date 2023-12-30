@@ -39,3 +39,5 @@
     + docker load -i my-image.tar
   + History of an Image:
     + docker history my-nginx:1.0
+
++ any image is readonly
