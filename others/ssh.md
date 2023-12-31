@@ -35,3 +35,24 @@ including password-based authentication and public key authentication.
 + `Server Administration`: SSH is commonly used to manage and administer remote servers, including setting up and configuring web servers, databases, and other software.
 + `Deploying Applications`: You can use SSH to securely deploy applications to remote servers, ensuring that sensitive data and code remain protected during the transfer.
 + `Data Engineering`: SSH can be used to access and manage remote data sources, execute data processing tasks on remote clusters, and transfer data securely between systems.
+
+## How to create public/private key
+
+1. use `ssh-keygen` tool
+
+1. ```cli
+    ssh <user-name>@<ip> --port <port>
+   ```
+
+## Examples
+
+```cli
+ssh gamal@192.168.2.150 -p 22
+```
+
+## Notes
+
++ ssh package_name: openssh-server
++ ssh port: 22/tcp
++ ssh config: /etc/ssh/sshd_config
++ ssh service_name: sshd
