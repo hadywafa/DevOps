@@ -111,3 +111,34 @@ because it solves the "it works on my machine" problem. It provides consistency 
 ## What is Microservices ?
 
 ![Alt text](../images/microservices-1.png)
+
+## What is File System hierarchy ?
+
+ ![Alt file-system-hierarchy](../images/file-system-hierarchy.png)
+
++ Any H.W devices is an file on /dev path in linux
+
+## What is Mounting ?
+
+"mount" refers to the process of associating or connecting a storage device, such as a disk drive or a partition, with a specific location within the `file system hierarchy`.
+
+"mounting" is the process of connecting a storage device to a directory in the file system, enabling you to work with the data on that device as if it were part of your local file structure.
+
+the concept of mounting in the context of an external USB drive is similar to what happens when you connect an external USB drive to your device. When you insert an external USB drive into your computer, it needs to be "mounted" before you can access its contents. Here's how it works:
+
+1. **Detection**:When you plug in a USB drive, your computer's operating system detects the presence of the drive and recognizes it as a storage device.
+1. **Mounting**:The operating system then goes through a process called "mounting," which associates the USB drive with a specific directory in the file system.
+1. **Access**:Once the USB drive is mounted, you can access its files and folders through the directory to which it was mounted. This directory is typically created automatically, and the drive's contents appear as if they were part of your local file system.
+
+1. **Usage**:You can read from and write to the USB drive, copy files to or from it, and perform various file operations just as you would with files on your computer's internal storage.
+
+1. **Unmounting**:When you're finished using the USB drive and want to safely remove it, you should "eject" or "unmount" it first. This ensures that any pending writes are completed, and the drive is safely disconnected from the system.
+
+### Example
+
+```powershell
+sudo mount /dev/storage/part1  /var/lib/docker/volumes/appserver/_data
+# storage => volume group(vg)
+# part1 => logical volume(vl)
+# appserver => docker volume
+```
