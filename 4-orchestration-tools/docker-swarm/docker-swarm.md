@@ -5,5 +5,5 @@
 + up managers must greater than down managers.
 + recommended Number of Manager.
 
-Recommened => 3
-Optimum => 7
+Recommended Manager Number => 3
+Optimum Manager Numbers => 7
