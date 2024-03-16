@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TestHTTPS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2127e049b83849527ed6a8136ea1cab7c07927c2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+09747729fee384ee65e7e8ced6ec7401b06306b3")]
 [assembly: System.Reflection.AssemblyProductAttribute("TestHTTPS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TestHTTPS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
