@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HadyW\\source\\repos\\DevOps\\Applications\\dotnet\\dotnet.csproj": {}
+    "C:\\Users\\HadyW\\source\\repos\\Dev\\DevOps\\Applications\\TestHTTPS\\TestHTTPS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HadyW\\source\\repos\\DevOps\\Applications\\dotnet\\dotnet.csproj": {
+    "C:\\Users\\HadyW\\source\\repos\\Dev\\DevOps\\Applications\\TestHTTPS\\TestHTTPS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HadyW\\source\\repos\\DevOps\\Applications\\dotnet\\dotnet.csproj",
-        "projectName": "dotnet",
-        "projectPath": "C:\\Users\\HadyW\\source\\repos\\DevOps\\Applications\\dotnet\\dotnet.csproj",
+        "projectUniqueName": "C:\\Users\\HadyW\\source\\repos\\Dev\\DevOps\\Applications\\TestHTTPS\\TestHTTPS.csproj",
+        "projectName": "TestHTTPS",
+        "projectPath": "C:\\Users\\HadyW\\source\\repos\\Dev\\DevOps\\Applications\\TestHTTPS\\TestHTTPS.csproj",
         "packagesPath": "C:\\Users\\HadyW\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HadyW\\source\\repos\\DevOps\\Applications\\dotnet\\obj\\",
+        "outputPath": "C:\\Users\\HadyW\\source\\repos\\Dev\\DevOps\\Applications\\TestHTTPS\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
