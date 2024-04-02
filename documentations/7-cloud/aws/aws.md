@@ -36,7 +36,7 @@
 
 Amazon EC2 (Elastic Compute Cloud) is a core service that allows users to launch and manage virtual servers, known as instances, in the cloud. EC2 provides resizable compute capacity, enabling users to scale their infrastructure up or down based on demand.
 
-### Instances
+### `Instances`
 
 - **Definition:**
   - instances have a lifecycle that includes launching, running, stopping, and terminating.   Users can start, stop, and terminate instances as needed to manage compute capacity and costs.
@@ -64,7 +64,7 @@ Amazon EC2 (Elastic Compute Cloud) is a core service that allows users to launch
 
 - **Configure storage**
 
-### Images
+### `Images`
 
 - **Amazon Machine Images (AMIs):** EC2 images, also known as AMIs, are pre-configured templates that contain the operating system, applications, libraries, and configurations required to launch EC2 instances. Users can create custom AMIs or use publicly available ones provided by AWS and the community.
 - **Creating Custom AMIs:** Users can create custom AMIs from existing EC2 instances or import virtual machine images from on-premises environments. Custom AMIs allow users to standardize configurations and quickly deploy new instances with predefined settings.
@@ -73,7 +73,7 @@ Amazon EC2 (Elastic Compute Cloud) is a core service that allows users to launch
   - Regularly updating and patching AMIs is essential for maintaining security and compliance.
   - AMIs can be versioned to track changes and updates over time.
 
-### EBS (Elastic Block Store)
+### `EBS (Elastic Block Store)`
 
 - **Storage Volumes:** Amazon EBS (Elastic Block Store) provides block-level storage volumes that can be attached to EC2 instances. EBS volumes offer durability and low-latency performance, making them suitable for storing data that requires persistent storage.
 - **Types of EBS Volumes:** EBS offers several types of volumes optimized for different use cases, including General Purpose SSD (gp2), Provisioned IOPS SSD (io1), Throughput Optimized HDD (st1), and Cold HDD (sc1).
@@ -83,7 +83,7 @@ Amazon EC2 (Elastic Compute Cloud) is a core service that allows users to launch
   - Properly sizing and provisioning EBS volumes is important for optimizing performance and cost.
   - Users should implement backup and disaster recovery strategies using EBS snapshots to protect against data loss.
 
-### Network and Security
+### `Network and Security`
 
 - **Virtual Private Cloud (VPC):** EC2 instances are deployed within Virtual Private Clouds (VPCs), which allow users to define their own network configurations, including subnets, route tables, and security groups.
 - **Security Groups:** Security groups act as virtual firewalls, controlling inbound and outbound traffic to instances based on user-defined rules. Users can specify allowed protocols, ports, and IP addresses to restrict access to instances.
@@ -93,7 +93,7 @@ Amazon EC2 (Elastic Compute Cloud) is a core service that allows users to launch
   - Properly configuring security groups and network settings is crucial for securing EC2 instances and preventing unauthorized access.
   - Users should regularly review and update network configurations to maintain compliance with security best practices.
 
-### Load Balancing
+### `Load Balancing`
 
 - **Elastic Load Balancing (ELB):** AWS offers load balancing services, such as Elastic Load Balancing (ELB), to distribute incoming traffic across multiple EC2 instances for improved availability and fault tolerance.
 - **Types of Load Balancers:** ELB offers several types of load balancers, including Classic Load Balancer, Application Load Balancer (ALB), and Network Load Balancer (NLB), each designed for specific use cases and traffic patterns.
