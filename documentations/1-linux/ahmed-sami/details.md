@@ -370,6 +370,21 @@ These filters can be combined in various ways using pipes (`|`) to create powerf
 
 - users passwords stored in `/etc/shadow` file with structure that consist of felids with `:` separate.
 
-  > `user-name`:`password`:`user-id`:`primary-group-id`:`comment`:`home-dir`:`default-shell`
-  >
-  > each user has one line
+  > `[user-name]` : `[hashed-password]` : `[last-password-change]` : `[min-password-age]` : `[max-password-age]` : `[password-expiration-warning]` : `[password-inactivity-period]` : `[account-expiration-date]` : `[reserved-field]`
+  ---
+  > `user-name`: The username of the user.  
+  > `hashed-password`: The hashed password of the user.  
+  > `last-password-change`: The number of days since the password was last changed.  
+  > `min-password-age`: The minimum number of days required between password changes.  
+  > `max-password-age`: The maximum number of days the password is valid before it must be changed.  
+  > `password-expiration-warning`: The number of days before password expiration that the user is warned.  
+  > `password-inactivity-period`: The number of days after password expiration before the account is disabled.  
+  > `account-expiration-date`: The date when the account will be disabled.  
+  > `reserved-field`: Reserved for future use.
+
+### Commands
+
+- `su` : switch user
+  - examples
+    - **su [username]**
+    - **su** === **su root**
