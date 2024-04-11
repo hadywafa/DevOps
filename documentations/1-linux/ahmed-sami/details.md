@@ -13,6 +13,7 @@
 
 ## basic Commands
 
+- `command --help`: command documentation
 - `pwd` : Show current dir
   - examples
     - **pwd**
@@ -382,9 +383,95 @@ These filters can be combined in various ways using pipes (`|`) to create powerf
   > `account-expiration-date`: The date when the account will be disabled.  
   > `reserved-field`: Reserved for future use.
 
-### Commands
+- In the `/etc/sudoers` file, users or groups can be granted permission to execute specific commands with root privileges using the `sudo` command.
+  > Granting User(s) Privileges:  
+  > `john ALL=(ALL:ALL) ALL`  
+  >
+  > Granting Group Privileges:  
+  > `%admins ALL=(ALL:ALL) ALL`
+  >
+  > Granting Specific Command Privileges:  
+  > `jane ALL=(ALL:ALL) /sbin/reboot`
 
-- `su` : switch user
-  - examples
-    - **su [username]**
-    - **su** === **su root**
+- Always use the visudo command to edit the /etc/sudoers file to ensure proper syntax checking and avoid potential errors.
+
+### User Management
+
+1. **Adding Users**:
+   - `useradd`: Adds a new user to the system.
+
+     ```bash
+     sudo useradd username
+     ```
+
+   - Options:
+     - `-m`: Create the user's home directory.
+     - `-s /bin/bash`: Set the user's default shell to Bash.
+
+1. **Deleting Users**:
+   - `userdel`: Deletes a user from the system.
+
+     ```bash
+     sudo userdel username
+     ```
+
+1. **Modifying Users**:
+   - `usermod`: Modifies user account properties.
+
+     ```bash
+     sudo usermod -aG groupname username
+     ```
+
+     - `-aG`: Add user to supplementary groups.
+     - `-g`: Change the user's primary group.
+
+1. **Listing Users**:
+   - `cat /etc/passwd`: Displays a list of all users on the system.
+
+1. **Changing User Password**:
+   - `passwd`: Changes a user's password with encryption (more secure than -p option in useradd).
+
+     ```bash
+     passwd username
+     ```
+
+1. **Switching Users**:
+   - `su`: Switches to another user account.
+
+     ```bash
+     su username
+     ```
+
+### Group Management
+
+1. **Adding Groups**:
+   - `groupadd`: Adds a new group to the system.
+
+     ```bash
+     sudo groupadd groupname
+     ```
+
+1. **Deleting Groups**:
+   - `groupdel`: Deletes a group from the system.
+
+     ```bash
+     sudo groupdel groupname
+     ```
+
+1. **Modifying Groups**:
+   - `groupmod`: Modifies group properties.
+
+     ```bash
+     sudo groupmod -n newgroupname oldgroupname
+     ```
+
+1. **Listing Groups**:
+   - `groups`: Displays a list of groups that current user is member in it.
+   - `cat /etc/group`: Displays a list of all groups on the system.
+
+1. **Adding Users to Groups**:
+   - `usermod`: Adds a user to a group.
+
+     ```bash
+     sudo usermod -aG groupname username
+     ```
