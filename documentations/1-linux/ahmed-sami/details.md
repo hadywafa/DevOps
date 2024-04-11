@@ -475,3 +475,27 @@ These filters can be combined in various ways using pipes (`|`) to create powerf
      ```bash
      sudo usermod -aG groupname username
      ```
+
+## File Management
+
+### Files Structure
+
+  1. **filename** : file name.
+  1. **inode** : metadata of the file.
+  1. **data-block** : data of the file.
+
+- `stat` : details about file.
+- `touch` : create file if not exist,else it update its modify data.
+- `ln`:create hard link
+
+### File Links(shortcuts)
+
+- Types of links
+  - Hard link
+    - `ln originalFileName targetFilename`
+  - Soft link
+    - `ln -s originalFileName targetFilename`
+
+## Filesystem Hierarchy Specifications (FHS)
+
+## File types, head, tail, more, less, mkdir, rmdir, rm
