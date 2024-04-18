@@ -14,6 +14,8 @@
 ## basic Commands
 
 - `command --help`: command documentation
+- `man command`: command documentation
+- `which command`: file location of the command
 - `pwd` : Show current dir
   - examples
     - **pwd**
@@ -499,3 +501,87 @@ These filters can be combined in various ways using pipes (`|`) to create powerf
 ## Filesystem Hierarchy Specifications (FHS)
 
 ## File types, head, tail, more, less, mkdir, rmdir, rm
+
+## Finding files
+
+## File Archive and Compression
+
+## File Ownership and Permissions
+
+## Managing Linux Processes
+
+### 1. Viewing Process
+>
+> definition  
+
+- TTY : terminal that run that process.
+- Any process with `?` TTY mean that it run from kernel itself.
+- All System Processes ends with `d`(daemon which mean background service in win).
+- Any Process have two ids `PID`(process id) and `PPID`(parent process id).
+-
+
+> Commands  
+
+- `ps`: Lists currently running processes.  
+
+```bash
+  ## displays processes associated with the current terminal session
+  ps
+
+  ## displays all processes associated with all terminal sessions.
+  ps -a
+
+  ## displays all processes associated with all terminal sessions.
+  ## provides a detailed long-format listing of processes.
+  ps -l
+
+  ## displays all processes on the system, including those from all users and terminals
+  ps -e
+  ps -A
+```
+
+```bash
+  ## Lists all processes currently running on the system
+  ps -l
+
+  ## Lists all processes currently running on the system
+  ps -e
+
+  ## List all processes with user-defined format 
+  ## which will display the process ID, parent process ID, user, and command.
+  ps -eo [pid,ppid,user,args]
+
+  ## Lists all processes for a specific user
+  ps -u [username]
+
+  ## Lists all processes by PID (Process ID)
+  ps -p [PID]
+
+  ## List all processes with a specific command name
+  ps -C [command_name]
+
+  ## List all processes in a tree structure:
+  pstree
+```
+
+```yaml
+F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
+0 S  1000  1001  1000  0  80   0 - 20491 poll_s pts/0    00:00:00 bash
+0 R  1000  1175  1001  0  80   0 - 11334 -      pts/0    00:00:00 ps
+```
+
+- Output
+  - `F`: Process state (D - uninterruptible sleep, R - running, S - sleeping, T - stopped, Z - zombie).
+  - `S`: Process status (S - sleeping, R - running).
+  - `UID`: User ID of the process owner.
+  - `PID`: Process ID.
+  - `PPID`: Parent Process ID.
+  - `C`: Processor utilization.
+  - `PRI`: Priority.
+  - `NI`: Nice value.
+  - `ADDR`: Kernel address space.
+  - `SZ`: Memory size in kilobytes.
+  - `WCHAN`: Wait channel.
+  - `TTY`: Terminal associated with the process.
+  - `TIME`: CPU time consumed by the process.
+  - `CMD`: Command executed by the process.
