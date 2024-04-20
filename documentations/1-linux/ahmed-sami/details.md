@@ -510,57 +510,62 @@ These filters can be combined in various ways using pipes (`|`) to create powerf
 
 ## Managing Linux Processes
 
-### 1. Viewing Process
->
-> definition  
-
+- every process is created from external command or built-in command or shell script.
 - TTY : terminal that run that process.
 - Any process with `?` TTY mean that it run from kernel itself.
 - All System Processes ends with `d`(daemon which mean background service in win).
 - Any Process have two ids `PID`(process id) and `PPID`(parent process id).
--
+- `ps` s snapshot of current running processes not runtime processes.
 
-> Commands  
+### Types of Processes in Linux
 
-- `ps`: Lists currently running processes.  
+1. **Foreground Processes**: These are processes that run in the foreground and interact directly with the user through the terminal. They typically receive input from the user and produce output directly to the terminal.
+
+1. **Background Processes**: Background processes run independently of the terminal and do not require user interaction. They can continue running even if the user logs out or closes the terminal.
+
+1. **Kernel Processes**: These are processes initiated by the kernel itself to perform system tasks, such as memory management, scheduling, and hardware interaction.typically run in kernel mode and have higher privileges than user processes.
+
+1. **User Processes**: These are processes initiated by users or applications running in user mode. They perform tasks such as running applications, executing commands, and performing computations.
+
+### `ps`
 
 ```bash
-  ## displays processes associated with the current terminal session
+  # displays processes associated with the current terminal session
   ps
 
-  ## displays all processes associated with all terminal sessions.
+  # displays all processes associated with all terminal sessions.
   ps -a
 
-  ## displays all processes associated with all terminal sessions.
-  ## provides a detailed long-format listing of processes.
+  # displays all processes associated with all terminal sessions.
+  # provides a detailed long-format listing of processes.
   ps -l
 
-  ## displays all processes on the system, including those from all users and terminals
+  # displays all processes on the system, including those from all users and terminals
   ps -e
   ps -A
 ```
 
 ```bash
-  ## Lists all processes currently running on the system
+  # Lists all processes currently running on the system
   ps -l
 
-  ## Lists all processes currently running on the system
+  # Lists all processes currently running on the system
   ps -e
 
-  ## List all processes with user-defined format 
-  ## which will display the process ID, parent process ID, user, and command.
+  # List all processes with user-defined format 
+  # which will display the process ID, parent process ID, user, and command.
   ps -eo [pid,ppid,user,args]
 
-  ## Lists all processes for a specific user
+  # Lists all processes for a specific user
   ps -u [username]
 
-  ## Lists all processes by PID (Process ID)
+  # Lists all processes by PID (Process ID)
   ps -p [PID]
 
-  ## List all processes with a specific command name
+  # List all processes with a specific command name
   ps -C [command_name]
 
-  ## List all processes in a tree structure:
+  # List all processes in a tree structure:
   pstree
 ```
 
@@ -585,3 +590,100 @@ F S   UID   PID  PPID  C PRI  NI ADDR SZ WCHAN  TTY          TIME CMD
   - `TTY`: Terminal associated with the process.
   - `TIME`: CPU time consumed by the process.
   - `CMD`: Command executed by the process.
+
+## Package Management
+
+![alt text](image.png)
+![alt text](image-1.png)
+
+### `dpkg`
+
+The dpkg command is a low-level package management tool in Debian-based Linux distributions, including Ubuntu. It allows users to manipulate individual software packages on the system, including installing, removing, and querying package information.
+
+```bash
+# list all installed packages in dist.
+dpkg -l
+
+# search specific package.
+dpkg -p [package-name]
+
+# download any files from link.
+wget [link]
+
+# package details.
+dpkg -I [package-name]
+
+# install package.
+sudo dpkg -i [package-name]
+
+# show files of specific package.
+dpkg -L [package-name]
+
+# remove specific package.
+sudo dpkg -r [package-name]
+
+# to know which package that have that file.
+dpkg -S [file-path]
+```
+
+### `apt`
+
+The apt command in Linux is a powerful package management tool used to install, update, upgrade, and remove software packages on Debian-based distributions such as Ubuntu. It works with the Advanced Package Tool (APT) system, which provides a high-level interface for managing packages and their dependencies.
+
+```bash
+# Updates the local package index from the repositories to ensure that information about available packages is up-to-date.
+apt update
+
+# Upgrades installed packages to their latest available versions.
+apt upgrade
+
+# Installs the specified package and its dependencies
+apt install [package-name]
+
+# Removes the specified package from the system, but retains its configuration files.
+apt remove [package-name]
+
+# Completely removes the specified package and its configuration files from the system.
+apt purge [package-name]
+
+# Searches for packages matching the specified search term in the package descriptions.
+apt search [search-term]
+
+# Displays detailed information about the specified package, including its description, dependencies, and version.
+apt show [package-name]
+
+# Removes packages that were automatically installed as dependencies but are no longer required by any installed package.
+sudo apt autoremove
+```
+
+#### How `apt` Knows Where to Download Packages
+
+- `apt` obtains package information and downloads packages  from software repositories configured on the system. These repositories are remote servers that host packages for various software packages compatible with the distribution.
+
+- The configuration for these repositories is stored in the `/etc/apt/sources.list` file and additional files under the `/etc/apt/sources.list.d/` directory.
+
+### `snap`
+
+Snap is a package management system and application distribution platform developed by Canonical for Linux distributions. It enables developers to package their applications and dependencies into a single containerized format called a "snap," which can be easily installed, updated, and managed across a wide range of Linux distributions.
+
+ ```bash
+# Install a Snap
+sudo snap install [snap-name]
+
+# List Installed Snaps:
+snap list
+
+# Update Snaps:
+sudo snap refresh [snap-name]
+
+# Remove a Snap:
+sudo snap remove [snap-name]
+
+# Search for Snaps:
+snap find [search-term]
+
+# View Snap Info:
+snap info [snap-name]
+```
+
+## Connecting to Remote Servers (ssh, wget, curl, etc.)
