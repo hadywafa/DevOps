@@ -687,3 +687,100 @@ snap info [snap-name]
 ```
 
 ## Connecting to Remote Servers (ssh, wget, curl, etc.)
+
+### SSH(Secure Shell)
+
+![alt text](image-2.png)
+
+- SSH is a secure protocol used for securely connecting to remote servers and managing them over a network. It provides encrypted communication between the client and server, ensuring confidentiality and integrity of data transmission.
+
+- OpenSSH is the most widely used implementation of SSH, providing both client and server functionalities. It offers encrypted communication between the client and server, ensuring the confidentiality and integrity of data transmission.
+
+#### Key Features of OpenSSH
+
+1. **Secure Communication**: OpenSSH encrypts all communication between the client and server, including authentication, commands, and data transmission, preventing eavesdropping and tampering.
+
+1. **Authentication Methods**: OpenSSH supports various authentication methods, including password authentication, public key authentication, and keyboard-interactive authentication. Public key authentication is widely used for its enhanced security and convenience.
+
+1. **Port Forwarding**: OpenSSH supports port forwarding, allowing users to securely tunnel network connections between local and remote hosts. This feature enables secure access to services running on remote hosts as if they were local.
+
+1. **Remote Shell Access**: OpenSSH provides remote shell access, allowing users to execute commands on remote servers securely. This is useful for managing servers, performing administrative tasks, and troubleshooting issues.
+
+1. **File Transfer**: OpenSSH includes utilities like SCP (Secure Copy) and SFTP (Secure FTP) for securely transferring files between local and remote systems. SCP allows for simple file transfers, while SFTP provides a more feature-rich file transfer experience.
+
+1. **Key Management**: OpenSSH uses public-key cryptography for authentication, allowing users to generate and manage key pairs for secure authentication. Key-based authentication provides stronger security compared to password authentication and is often preferred for automated processes and secure access.
+
+#### Basic Usage of OpenSSH
+
+```bash
+# Connecting to a Remote Server
+ssh [username@remote_host]
+ 
+# Running Commands on Remote Server:
+ssh [username@remote_host] [command]
+```
+
+#### Configuring OpenSSH
+
+1.Configure SSH aliases throw `~/.ssh/config` file
+
+```txt
+# Define an alias for connecting to a remote server with a specific username and port
+Host LinuxAzure
+    HostName 4.236.152.79
+    User hady
+    Port 22
+```
+
+```bash
+# Connect to remote server
+ssh LinuxAzure
+```
+
+- OpenSSH client and server configurations are typically stored in `/etc/ssh/ssh_config` and `/etc/ssh/sshd_config` respectively. Users can customize various settings such as authentication methods, key-based authentication, port forwarding, and logging.
+
+- Public and private key pairs for authentication are stored in `~/.ssh` directory by default. Users can generate key pairs using `ssh-keygen` and manage them using utilities like `ssh-add` and `ssh-keyscan`.
+
+### wget (Web Get)
+
+wget is a command-line utility for downloading files from web servers using various protocols such as HTTP, HTTPS, FTP, and FTPS. It supports recursive downloads, resuming interrupted downloads, and downloading files in the background.
+
+```bash
+wget [URL]
+```
+
+### curl (Client URL)
+
+curl is a command-line utility for transferring data to or from a server using various protocols such as HTTP, HTTPS, FTP, FTPS, and SCP. It supports a wide range of features, including file transfers, HTTP POST requests, and authentication.
+
+```bash
+curl [URL]
+```
+
+### scp (Secure Copy)
+
+`scp` is a command-line utility for securely copying files between hosts on a network. It uses SSH for encryption and authentication, providing secure file transfers between remote systems.
+
+```bash
+scp [source] [destination]
+
+scp username@remote_host:/path/to/remote/file.txt /path/to/local/directory/
+
+scp /path/to/local/file.txt username@remote_host:/path/to/remote/directory/
+```
+
+### sftp (Secure FTP)
+
+`sftp` is a command-line utility for interacting with remote file systems over SSH. It provides a secure alternative to traditional FTP for file transfers and management.
+
+```bash
+sftp username@remote_host
+```
+
+### rsync (Remote Sync)
+
+`rsync` is a powerful utility for efficiently synchronizing files and directories between local and remote systems. It uses a delta-transfer algorithm to minimize data transfer and supports copying files over SSH.
+
+```bash
+rsync [options] source destination
+```
