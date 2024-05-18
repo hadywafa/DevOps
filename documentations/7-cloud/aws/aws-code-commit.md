@@ -1,12 +1,14 @@
 # Code Commit
 
- You have three main methods to connect to AWS CodeCommit repositories, each with its own use case and setup process:
+You have three methods to authenticate with AWS CodeCommit repositories:
+
+1. **IAM Credentials**: Uses the AWS CLI credential helper, leveraging your IAM credentials.
+2. **HTTPS Git Credentials**: Involves creating and using specific HTTPS Git credentials for your IAM user.
+3. **SSH Public Key**: Utilizes an SSH key pair for secure authentication.
 
 ## 1. IAM Credentials (Using AWS CLI Credential Helper)
 
 This method uses your IAM credentials configured in the AWS CLI to authenticate with CodeCommit.
-
-### IAM Credentials Steps
 
 1. **Install the AWS CLI**: Ensure the AWS CLI is installed.
 
@@ -48,8 +50,6 @@ This method uses your IAM credentials configured in the AWS CLI to authenticate 
 
 This method involves creating specific HTTPS Git credentials for your IAM user and using them to authenticate.
 
-### HTTPS Steps
-
 1. **Generate HTTPS Git Credentials**: In the AWS Management Console, navigate to IAM > Users > Your User > Security credentials > HTTPS Git credentials for AWS CodeCommit > Generate.
    - Note down the generated username and password.
 
@@ -70,8 +70,6 @@ This method involves creating specific HTTPS Git credentials for your IAM user a
 ## 3. SSH Public Key
 
 This method uses an SSH key pair for authentication with CodeCommit.
-
-### SSH Steps
 
 1. **Generate an SSH Key Pair** (if you don’t have one):
 
@@ -107,12 +105,58 @@ This method uses an SSH key pair for authentication with CodeCommit.
    git clone ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/your-repo-name
    ```
 
-## Summary
+## Why You Can't Mix SSH and HTTPS Methods in Git
 
-You have three methods to authenticate with AWS CodeCommit repositories:
+#### Understanding Git Remote URLs
 
-1. **IAM Credentials**: Uses the AWS CLI credential helper, leveraging your IAM credentials.
-2. **HTTPS Git Credentials**: Involves creating and using specific HTTPS Git credentials for your IAM user.
-3. **SSH Public Key**: Utilizes an SSH key pair for secure authentication.
+- **HTTPS URL**: Starts with `https://` (e.g., `https://git-codecommit.us-east-1.amazonaws.com/v1/repos/your-repo-name`).
+- **SSH URL**: Starts with `ssh://` (e.g., `ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/your-repo-name`).
 
-Each method has its own advantages and can be chosen based on your security requirements and workflow preferences.
+#### Different Authentication Mechanisms
+
+- **HTTPS**: Uses HTTPS credentials (username/password) or AWS CLI credential helper.
+- **SSH**: Uses SSH keys.
+
+#### Switching Remote URLs
+
+If you need to switch from one method to another, update the remote URL configuration.
+
+#### Switching from HTTPS to SSH
+
+1. **Check current remote URL**:
+
+   ```sh
+   git remote -v
+   ```
+
+2. **Change to SSH**:
+
+   ```sh
+   git remote set-url origin ssh://git-codecommit.us-east-1.amazonaws.com/v1/repos/your-repo-name
+   ```
+
+3. **Verify**:
+
+   ```sh
+   git remote -v
+   ```
+
+#### Switching from SSH to HTTPS
+
+1. **Check current remote URL**:
+
+   ```sh
+   git remote -v
+   ```
+
+2. **Change to HTTPS**:
+
+   ```sh
+   git remote set-url origin https://git-codecommit.us-east-1.amazonaws.com/v1/repos/your-repo-name
+   ```
+
+3. **Verify**:
+
+   ```sh
+   git remote -v
+   ```
