@@ -1,54 +1,19 @@
-# AWS Services (Day 22)
-
-![alt text](images/image.png)
-![alt text](images/aws-azure-gcp.jpg)
-
-## AWS Components
-
-1. Region
-    - it is Specific region in a country
-    - Each Region zone has many (AZ)
-1. Availability Zone (AZ)
-    - it is collection of data center
-1. Edge Location
-    - storage is responsible only for caching
-
-- Example without aws services
-
-![alt text](images/image-1.png)
-
-- Example with aws services
-
-![alt text](images/image-2.png)
-![alt text](images/image-3.png)
-
-## IAM Service
-
-### Access Management
-
-- User Group
-- Users
-- Roles
-- Policies
-- Identity providers
-
-## EC2
+# EC2 (Elastic Compute Cloud)
 
 Amazon EC2 (Elastic Compute Cloud) is a core service that allows users to launch and manage virtual servers, known as instances, in the cloud. EC2 provides resizable compute capacity, enabling users to scale their infrastructure up or down based on demand.
 
-### `Instances`
+## `Instances`
 
-- **Definition:**
-  - instances have a lifecycle that includes launching, running, stopping, and terminating.   Users can start, stop, and terminate instances as needed to manage compute capacity and costs.
+- instances have a lifecycle that includes launching, running, stopping, and terminating.   Users can start, stop, and terminate instances as needed to manage compute capacity and costs.
 
-- **Notes:**
-  - Users should be aware of the pricing implications associated with different instance types and usage patterns.
-  - EC2 instances can be used for a wide range of applications, including web hosting, development and testing, data processing, and high-performance computing.
+- Users should be aware of the pricing implications associated with different instance types and usage patterns.
+- EC2 instances can be used for a wide range of applications, including web hosting, development and testing, data processing, and high-performance computing.
 
-- **Launch Instance:**  
-    ![alt text](image.png)
-  - An AMI is a template that contains the software configuration (operating system, application server, and applications) required to launch your instance.
-  - each AIM has its unique id
+**Launch Instance:**  
+    ![alt text](./images/image.png)
+
+- An AMI is a template that contains the software configuration (operating system, application server, and applications) required to launch your instance.
+- each AIM has its unique id
 
 - **Instance Types:**  
   - EC2 instances come in various types optimized for different use cases, such as general-purpose, compute-optimized, memory-optimized, and storage-optimized instances. Each instance type offers different combinations of CPU, memory, storage, and networking resources to meet specific application requirements.
@@ -64,7 +29,49 @@ Amazon EC2 (Elastic Compute Cloud) is a core service that allows users to launch
 
 - **Configure storage**
 
-### `Images`
+## Launch Instance
+
+- `AMI`: is a template that contains the software configuration (operating system, application server, and applications) required to launch your instance.
+
+- `Security Groups` : A security group is a set of firewall rules that control the traffic for your instance. Add rules to allow specific traffic to reach your instance.
+
+### Steps to Connect to a Remote Server Using OpenSSH
+
+1. **Install OpenSSH**:
+   Ensure OpenSSH is installed on your system.
+
+   ```sh
+   sudo apt update
+   sudo apt install openssh-client openssh-server
+   ```
+
+2. **Obtain SSH Key**:
+   Ensure you have your SSH private key file (`my-first-web-server-ssh-key.pem`).
+
+3. **Set Correct Permissions**:
+   Set the permissions of your SSH key to be readable only by you.
+
+   ```sh
+   chmod 400 /path/to/my-first-web-server-ssh-key.pem
+   ```
+
+4. **Find Public DNS or IP Address**:
+   Obtain the Public DNS or IP address of the remote server from your hosting provider or AWS Management Console.
+
+5. **Connect to the Remote Server**:
+   Use the `ssh` command to connect to the server. Replace `/path/to/my-first-web-server-ssh-key.pem` with your key file path and `user@server-ip` with your server's user and IP address.
+
+   ```sh
+   ssh -i /path/to/my-first-web-server-ssh-key.pem user@server-ip
+   ```
+
+   **Example**:
+
+   ```sh
+   ssh -i /mnt/c/Users/HadyW/Desktop/AWS/my-first-web-server-ssh-key.pem ubuntu@51.20.193.97
+   ```
+
+## `Images`
 
 - **Amazon Machine Images (AMIs):** EC2 images, also known as AMIs, are pre-configured templates that contain the operating system, applications, libraries, and configurations required to launch EC2 instances. Users can create custom AMIs or use publicly available ones provided by AWS and the community.
 - **Creating Custom AMIs:** Users can create custom AMIs from existing EC2 instances or import virtual machine images from on-premises environments. Custom AMIs allow users to standardize configurations and quickly deploy new instances with predefined settings.
@@ -73,7 +80,7 @@ Amazon EC2 (Elastic Compute Cloud) is a core service that allows users to launch
   - Regularly updating and patching AMIs is essential for maintaining security and compliance.
   - AMIs can be versioned to track changes and updates over time.
 
-### `EBS (Elastic Block Store)`
+## `EBS (Elastic Block Store)`
 
 - **Storage Volumes:** Amazon EBS (Elastic Block Store) provides block-level storage volumes that can be attached to EC2 instances. EBS volumes offer durability and low-latency performance, making them suitable for storing data that requires persistent storage.
 - **Types of EBS Volumes:** EBS offers several types of volumes optimized for different use cases, including General Purpose SSD (gp2), Provisioned IOPS SSD (io1), Throughput Optimized HDD (st1), and Cold HDD (sc1).
@@ -83,7 +90,7 @@ Amazon EC2 (Elastic Compute Cloud) is a core service that allows users to launch
   - Properly sizing and provisioning EBS volumes is important for optimizing performance and cost.
   - Users should implement backup and disaster recovery strategies using EBS snapshots to protect against data loss.
 
-### `Network and Security`
+## `Network and Security`
 
 - **Virtual Private Cloud (VPC):** EC2 instances are deployed within Virtual Private Clouds (VPCs), which allow users to define their own network configurations, including subnets, route tables, and security groups.
 - **Security Groups:** Security groups act as virtual firewalls, controlling inbound and outbound traffic to instances based on user-defined rules. Users can specify allowed protocols, ports, and IP addresses to restrict access to instances.
@@ -93,7 +100,7 @@ Amazon EC2 (Elastic Compute Cloud) is a core service that allows users to launch
   - Properly configuring security groups and network settings is crucial for securing EC2 instances and preventing unauthorized access.
   - Users should regularly review and update network configurations to maintain compliance with security best practices.
 
-### `Load Balancing`
+## `Load Balancing`
 
 - **Elastic Load Balancing (ELB):** AWS offers load balancing services, such as Elastic Load Balancing (ELB), to distribute incoming traffic across multiple EC2 instances for improved availability and fault tolerance.
 - **Types of Load Balancers:** ELB offers several types of load balancers, including Classic Load Balancer, Application Load Balancer (ALB), and Network Load Balancer (NLB), each designed for specific use cases and traffic patterns.
