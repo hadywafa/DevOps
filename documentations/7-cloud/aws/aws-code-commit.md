@@ -29,6 +29,15 @@ This method uses your IAM credentials configured in the AWS CLI to authenticate 
    git config --global credential.UseHttpPath true
    ```
 
+    - How it works:
+        1. **Git Needs Credentials**: When you try to clone, push, or pull from a CodeCommit repository, Git needs to authenticate you.
+
+        1. **Credential Helper Activated**: The configured credential helper (aws codecommit credential-helper) is called instead of prompting you for a username and password.
+
+        1. **AWS CLI Handles Authentication**: The credential helper uses your IAM credentials, which are already configured in your AWS CLI (aws configure), to obtain temporary credentials.
+
+        1. **Access Granted**: These temporary credentials are used to authenticate your Git request to the CodeCommit repository.
+
 4. **Clone the Repository**:
 
    ```sh
