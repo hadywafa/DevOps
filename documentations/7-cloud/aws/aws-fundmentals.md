@@ -1,6 +1,6 @@
 # AWS Services (Day 22)
 
-![alt text](images/image.png)
+![alt text](images/base.png)
 ![alt text](images/aws-azure-gcp.jpg)
 
 ## AWS Components
@@ -15,9 +15,9 @@
 
 - Example without aws services
 
-![alt text](images/image-1.png)
+![alt text](images/base-1.png)
 
 - Example with aws services
 
-![alt text](images/image-2.png)
-![alt text](images/image-3.png)
+![alt text](images/base-2.png)
+![alt text](images/base-3.png)

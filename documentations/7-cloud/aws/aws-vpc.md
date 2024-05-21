@@ -17,25 +17,25 @@
 
 ## Understanding IP
 
-![alt text](image.png)
+![alt text](images/image.png)
 
 - each byte can contain 255 possible numbers
-![alt text](image-1.png)
+![alt text](images/image-1.png)
 
 - network devices working with binary data
-![alt text](image-2.png)
+![alt text](images/image-2.png)
 
 - IP = Network Number + Host Number
-![alt text](image-3.png)
+![alt text](images/image-3.png)
 
 - class full addressing (old)
-![alt text](image-4.png)
-![alt text](image-5.png)
+![alt text](images/image-4.png)
+![alt text](images/image-5.png)
 - CIDR Classless Inter-Domain Routing (new)
-![alt text](image-6.png)
-![alt text](image-7.png)
-![alt text](image-9.png)
-![alt text](image-11.png)
-![alt text](image-12.png)
-![alt text](image-13.png)
-![alt text](image-14.png)
+![alt text](images/image-6.png)
+![alt text](images/image-7.png)
+![alt text](images/image-9.png)
+![alt text](images/image-11.png)
+![alt text](images/image-12.png)
+![alt text](images/image-13.png)
+![alt text](images/image-14.png)
