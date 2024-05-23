@@ -17,21 +17,27 @@
 
 ## Understanding IP in AWS
 
-![alt text](images/image.png)
+![alt text](images/understanding-ip-in-aws.png)
 
-- each byte can contain 255 possible numbers
+### each byte can contain 255 possible numbers
+
 ![alt text](images/image-1.png)
 
-- network devices working with binary data
+### network devices working with binary data
+
 ![alt text](images/image-2.png)
 
-- IP = Network Number + Host Number
+### IP = Network Number + Host Number
+
 ![alt text](images/image-3.png)
 
-- class full addressing (old)
+### Class full addressing (old)
+
 ![alt text](images/image-4.png)
 ![alt text](images/image-5.png)
-- CIDR Classless Inter-Domain Routing (new)
+
+### CIDR Classless Inter-Domain Routing (new)
+
 ![alt text](images/image-6.png)
 ![alt text](images/image-7.png)
 ![alt text](images/image-9.png)
@@ -40,12 +46,26 @@
 ![alt text](images/image-13.png)
 ![alt text](images/image-14.png)
 
-## Understand Subnets in AWS
+## Design VPC subnets in AWS
 
-![alt text](image-1.png)
-![alt text](image-2.png)
-![alt text](image-3.png)
-![alt text](image-4.png)
+![alt text](private-ips-from-iana.png)
+
+![alt text](private-ips-considrations.png)
+
+### We create subnets from host id not from network id
+
+![alt text](subnets-from-host-id-1.png)
+
+![alt text](subnets-from-host-id-2.png)
+
+### Calculation of Subnets
+
 ![alt text](image-5.png)
+
 ![alt text](image-6.png)
-![alt text](image-7.png)
+
+### Reserved IPs for any subnets
+
+![alt text](reserved-ips-for-any-subnets.png)
+
+## Example Design VPC subnets in AWS
