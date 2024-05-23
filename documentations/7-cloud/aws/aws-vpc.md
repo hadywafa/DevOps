@@ -11,10 +11,6 @@
 - Each subnet has range of ips.
 - There is default created vpc per aws account
 
-## Network Connections
-
-![alt text](images/network-connection-getway.png)
-
 ## Understanding IP in AWS
 
 ![alt text](images/understanding-ip-in-aws.png)
@@ -81,3 +77,21 @@
 ![alt text](images/reserved-ips-for-any-subnets.png)
 
 ## Example Design VPC subnets in AWS
+
+![alt text](images/example-design-vpc-subnets-in-aws.png)
+
+## Network Connections
+
+![alt text](images/network-connection-getway.png)
+
+### Peering
+
+### Transit Gateway
+
+### AWS Direct Connection
+
+### AWS Site To Site
+
+### Internal Gateway
+
+### NAT Gateway
