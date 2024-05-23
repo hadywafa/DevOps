@@ -1,6 +1,5 @@
-# AWS Services (Day 22)
+# AWS Services Fundamentals
 
-![alt text](images/base.png)
 ![alt text](images/aws-azure-gcp.jpg)
 
 ## AWS Components
@@ -14,10 +13,8 @@
     - storage is responsible only for caching
 
 - Example without aws services
-
-![alt text](images/base-1.png)
+![alt text](images/fb-without-aws-services.png)
 
 - Example with aws services
-
-![alt text](images/base-2.png)
-![alt text](images/base-3.png)
+![alt text](images/fb-with-aws-services-1.png)
+![alt text](images/fb-with-aws-services-2.png)

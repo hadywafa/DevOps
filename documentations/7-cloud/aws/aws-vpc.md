@@ -21,51 +21,52 @@
 
 ### each byte can contain 255 possible numbers
 
-![alt text](images/image-1.png)
+![alt text](images/each-byte-can-contain-255-possible-numbers.png)
 
 ### network devices working with binary data
 
-![alt text](images/image-2.png)
+![alt text](images/network-devices-working-with-binary-data.png)
 
 ### IP = Network Number + Host Number
 
-![alt text](images/image-3.png)
+![alt text](images/ip-form.png)
 
 ### Class full addressing (old)
 
-![alt text](images/image-4.png)
-![alt text](images/image-5.png)
+![alt text](images/classfull-addressing-1.png)
+![alt text](images/classfull-addressing-2.png)
 
 ### CIDR Classless Inter-Domain Routing (new)
 
-![alt text](images/image-6.png)
-![alt text](images/image-7.png)
-![alt text](images/image-9.png)
-![alt text](images/image-11.png)
-![alt text](images/image-12.png)
-![alt text](images/image-13.png)
-![alt text](images/image-14.png)
+![alt text](images/cidr-1.png)
+![alt text](images/cidr-2.png)
+![alt text](images/cidr-3.png)
+![alt text](images/cidr-4.png)
+![alt text](images/cidr-5.png)
+![alt text](images/cidr-6.png)
+![alt text](images/cidr-7.png)
 
 ## Design VPC subnets in AWS
 
-![alt text](private-ips-from-iana.png)
+![alt text](images/private-ips-from-iana.png)
 
-![alt text](private-ips-considrations.png)
+![alt text](images/private-ips-considrations.png)
 
 ### We create subnets from host id not from network id
 
-![alt text](subnets-from-host-id-1.png)
+![alt text](images/subnets-from-host-id-1.png)
 
-![alt text](subnets-from-host-id-2.png)
+![alt text](images/subnets-from-host-id-2.png)
 
 ### Calculation of Subnets
 
-![alt text](image-5.png)
-
-![alt text](image-6.png)
+- ex1
+- ex2
+- ex3
+- ex4
 
 ### Reserved IPs for any subnets
 
-![alt text](reserved-ips-for-any-subnets.png)
+![alt text](images/reserved-ips-for-any-subnets.png)
 
 ## Example Design VPC subnets in AWS
