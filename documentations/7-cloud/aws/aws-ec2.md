@@ -10,7 +10,6 @@ Amazon EC2 (Elastic Compute Cloud) is a core service that allows users to launch
 - EC2 instances can be used for a wide range of applications, including web hosting, development and testing, data processing, and high-performance computing.
 
 **Launch Instance:**  
-    ![alt text](./images/image.png)
 
 - An AMI is a template that contains the software configuration (operating system, application server, and applications) required to launch your instance.
 - each AIM has its unique id
