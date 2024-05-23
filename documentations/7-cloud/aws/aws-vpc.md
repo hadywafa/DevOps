@@ -60,10 +60,21 @@
 
 ### Calculation of Subnets
 
-- ex1
-- ex2
-- ex3
-- ex4
+![alt text](images/network-to-create-subnets-from-it.png)
+
+- To identical subnets of **/17**
+![alt text](images/calc-subnets-ex1-1.png)
+![alt text](images/calc-subnets-ex1-2.png)
+
+- To identical subnets of **/18**
+![alt text](images/calc-subnets-ex2-1.png)
+![alt text](images/calc-subnets-ex2-2.png)
+
+- To mixed size subnets
+ ![alt text](images/calc-subnets-ex3.png)
+
+- CIDR address should not overlaps with existing subnet CIDR with
+![alt text](images/calc-subnets-note.png)
 
 ### Reserved IPs for any subnets
 
