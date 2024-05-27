@@ -59,3 +59,7 @@ ubuntu@your-instance-public-ip: Permission denied (publickey).
    ```sh
    ssh -i ~/ssh-key.pem ubuntu@your-instance-public-ip
    ```
+
+## How AWS Create Public IP
+
+- AWS manages the allocation and assignment of public IP addresses from its own pool of IP addresses
