@@ -6,7 +6,7 @@
 
 ## Key Features of Amazon SNS
 
-1. **Topic-Based Publish/Subscribe Model**:
+1. **Topic-Based Publish/Subscriber Model**:
    - **Topics**: A topic is a logical access point for sending messages to multiple subscribers. Publishers send messages to topics, and SNS distributes these messages to all the subscribers of that topic.
    - **Publishers**: Any service or application that sends messages to an SNS topic.
    - **Subscribers**: Endpoints that receive messages from an SNS topic. Subscribers can include AWS `Lambda functions`, `SQS queues`, `HTTP/S endpoints`, and `email addresses`.
