@@ -5,9 +5,9 @@
 - Amazon S3 is a scalable object storage service provided by AWS. It is designed for storing and retrieving any amount of data from anywhere on the web. S3 is widely used for its durability, scalability, and security.
 - Buckets are containers for data stored in S3.
 
-![alt text](image-2.png)
-![alt text](image.png)
-![alt text](image-1.png)
+![alt text](images/s3-core-concept.png)
+![alt text](images/s3-features.png)
+![alt text](images/s3-pricing.png)
 
 ### Key Features of Amazon S3
 
