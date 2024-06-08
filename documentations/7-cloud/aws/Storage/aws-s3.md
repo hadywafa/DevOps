@@ -125,7 +125,7 @@ Amazon S3 supports two types of buckets. You can't change the bucket type after 
 - **Naming**: Bucket names must be unique within the chosen AZ. The AZ ID is automatically included in the bucket name’s suffix for uniqueness.
 - **Example Scenario**: Use this for applications where fast data access is crucial, such as real-time analytics or high-frequency trading platforms. Data access is quicker because it is stored in a single AZ, but you have less redundancy.
 
-### 2.  Bucket Name and Region
+### 2. Bucket Name and Region
 
 - **Bucket Name**: Must be unique across all AWS accounts and follow specific naming conventions (e.g., no uppercase letters, no underscores, etc.).
 - **Region**: Choose the AWS Region where the bucket will be created. Data stored in the bucket will be physically located in the selected region.
@@ -263,3 +263,10 @@ For applications requiring low latency and local storage on-premises.
   - **Storage Cost**: Pricing varies based on the specific configuration and capacity of the Outposts.
   - **Request Pricing**: Same as S3 Standard.
   - **Use Case**: Applications requiring local data residency and low latency access.
+
+## Notes
+
+### What is ACLs
+
+- it is legacy way to manage permissions to your s3 buckets and objects
+- aws recommend to use bucket policies over ACLs
