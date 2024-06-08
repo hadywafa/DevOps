@@ -10,7 +10,7 @@
             "Resource": "arn:aws:s3:::hw-first-bucket/*",
             "Condition": {
                 "IpAddress": {
-                    "aws:SourceIp": "237.84.2.178"
+                    "aws:SourceIp": "154.177.185.128"
                 }
             }
         }
