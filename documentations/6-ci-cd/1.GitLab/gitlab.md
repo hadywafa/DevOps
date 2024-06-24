@@ -452,3 +452,22 @@ GitLab CI/CD provides several predefined variables that can be used in condition
 - `$CI_COMMIT_TAG`: The tag name for which the project is built.
 - `$CI_PIPELINE_SOURCE`: The event that triggered the pipeline (e.g., `push`, `merge_request_event`, `schedule`).
 - `$CI_COMMIT_REF_NAME`: The branch or tag name for which the project is built.
+
+#### Predefined Behaviors
+
+In GitLab CI/CD, the `when` keyword is used to specify the conditions under which a job should run. Here are the available when behaviors along with their definitions:
+
+- **on_success**: Runs the job only when the previous job or stage completes successfully.
+- **on_failure**: Runs the job only when the previous job or stage fails.
+- **always**: Runs the job unconditionally, regardless of the outcome of previous jobs or changes in the repository.
+- **manual**: Requires manual intervention to trigger the job. It does not automatically run based on pipeline events or conditions.
+- **delayed**: Runs the job after a specified delay. This delay can be configured using the delay keyword within the job definition.
+
+    ```yml
+    deploy_job:
+    stage: deploy
+    script:
+        - echo "Deploying the project"
+    when: delayed
+    start_in: 1 hour
+    ```
