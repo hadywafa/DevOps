@@ -4,6 +4,14 @@
 ![alt text](images/ci.png)
 ![alt text](images/cd.png)
 
+## Basic Information
+
+![alt text](images/stages.png)
+
+- You can group multiple jobs into stages that run in a defined order.
+- If all jobs in a stage succeed, the pipeline moves on to the next stage, else not.
+- Multiple jobs in the same stage are executed in parallel, you can make them runs in seq using `needs` keyword.
+
 ## Basic Syntax
 
 A GitLab CI/CD pipeline is defined by a `.gitlab-ci.yml` file placed in the root of your repository. This file contains the various stages, jobs, and scripts that will be executed.
@@ -283,17 +291,47 @@ deploy_job:
     - master
 ```
 
-## Advanced Syntax
+## Predefined Variables
 
-### Conditions
+GitLab CI/CD provides several predefined variables that can be used in conditions:
 
-#### Key Conditions and Keywords
+- `$CI_COMMIT_BRANCH`: The branch name for which the project is built.
+- `$CI_COMMIT_TAG`: The tag name for which the project is built.
+- `$CI_PIPELINE_SOURCE`: The event that triggered the pipeline (e.g., `push`, `merge_request_event`, `schedule`).
+- `$CI_COMMIT_REF_NAME`: The branch or tag name for which the project is built.
+
+## Predefined Behaviors
+
+In GitLab CI/CD, the `when` keyword is used to specify the conditions under which a job should run. Here are the available when behaviors along with their definitions:
+
+- **on_success**: Runs the job only when the previous job or stage completes successfully.
+- **on_failure**: Runs the job only when the previous job or stage fails.
+- **always**: Runs the job unconditionally, regardless of the outcome of previous jobs or changes in the repository.
+- **manual**: Requires manual intervention to trigger the job. It does not automatically run based on pipeline events or conditions.
+- **delayed**: Runs the job after a specified delay. This delay can be configured using the delay keyword within the job definition.
+
+    ```yml
+    deploy_job:
+    stage: deploy
+    script:
+        - echo "Deploying the project"
+    when: delayed
+    start_in: 1 hour
+    ```
+
+## Custom Variables
+
+asd
+
+## Conditions
+
+### Key Conditions and Keywords
 
 1. **only**: Specifies that a job will run only for certain branches, tags, or other conditions.
 2. **except**: Specifies that a job will not run for certain branches, tags, or other conditions.
 3. **rules**: Provides more advanced control, allowing complex conditions using logical operators and environment variables.
 
-#### Detailed Explanation
+### Detailed Explanation
 
 - `only`  
     The `only` keyword is used to specify which branches, tags, or pipeline events should trigger the job. It can be used with branches, tags, merge requests, schedules, and more.
@@ -339,7 +377,7 @@ deploy_job:
         when: always                             # Overrides default behavior to always run
     ```
 
-#### Using Conditions in Real Examples
+### Using Conditions in Real Examples
 
 - Example 1: Triggering Jobs for Specific Branches
 
@@ -444,30 +482,63 @@ deploy_job:
       when: on_success    # Runs on success of previous stages
 ```
 
-#### Predefined Variables
+## Workflow
 
-GitLab CI/CD provides several predefined variables that can be used in conditions:
+The `workflow` keyword  is used to define a custom pipeline order that differs from the default linear execution. It allows you to specify conditions under which jobs should run based on events, dependencies, or manual actions.
 
-- `$CI_COMMIT_BRANCH`: The branch name for which the project is built.
-- `$CI_COMMIT_TAG`: The tag name for which the project is built.
-- `$CI_PIPELINE_SOURCE`: The event that triggered the pipeline (e.g., `push`, `merge_request_event`, `schedule`).
-- `$CI_COMMIT_REF_NAME`: The branch or tag name for which the project is built.
+```yaml
+# Jobs will never run (when: never) if the pipeline is triggered for branches other than main and not from a merge request event.
+# Jobs will always run (when: always) as a fallback for all other cases, ensuring consistent pipeline execution when specific conditions are not met.
 
-#### Predefined Behaviors
+workflow:
+  rules:
+    - if: $CI_COMMIT_BRANCH != "main" && $CI_PIPELINE_SOURCE != "merge_request_event"
+      when: never
+    - when: always
+```
 
-In GitLab CI/CD, the `when` keyword is used to specify the conditions under which a job should run. Here are the available when behaviors along with their definitions:
+```yaml
+# Jobs will always run (when: always) if the pipeline is triggered for master branch.
+# Jobs will manual run (when: manual) if the pipeline is triggered for master branch.
 
-- **on_success**: Runs the job only when the previous job or stage completes successfully.
-- **on_failure**: Runs the job only when the previous job or stage fails.
-- **always**: Runs the job unconditionally, regardless of the outcome of previous jobs or changes in the repository.
-- **manual**: Requires manual intervention to trigger the job. It does not automatically run based on pipeline events or conditions.
-- **delayed**: Runs the job after a specified delay. This delay can be configured using the delay keyword within the job definition.
+workflow:
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      when: always
+      allow_failure: false
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+      when: manual
+      allow_failure: true
 
-    ```yml
-    deploy_job:
-    stage: deploy
-    script:
-        - echo "Deploying the project"
-    when: delayed
-    start_in: 1 hour
-    ```
+# Define stages in the pipeline
+stages:
+  - build
+  - test
+  - deploy
+
+# Define jobs within each stage
+build_job:
+  stage: build
+  script:
+    - echo "Building the project"
+
+test_job:
+  stage: test
+  script:
+    - echo "Running tests"
+
+deploy_job:
+  stage: deploy
+  script:
+    - echo "Deploying the project"
+  only:
+    - master  # Only deploy when changes are pushed to master branch
+```
+
+#### Workflow Use Cases
+
+- **Automatic vs. Manual Triggers**: Use `workflow` to specify which branches or conditions trigger automatic pipeline runs (`always`) and which require manual intervention (`manual`).
+  
+- **Conditional Execution**: Customize pipeline behavior based on branch names, tags (`$CI_COMMIT_TAG`), or other CI/CD variables (`$CI_COMMIT_REF_NAME`).
+
+- **Failure Allowance**: Control whether jobs are allowed to fail (`allow_failure: true`), useful for non-critical or experimental branches.
