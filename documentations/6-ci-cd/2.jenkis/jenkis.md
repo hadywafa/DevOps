@@ -18,4 +18,11 @@
 
 1. restart terminal session
 1. pull image / run container
-    > docker run -p 8080:8080 -p 50000:50000 -d -v jenkins_home:/var/kenkins_home jenkins/jenkins:lts
+    > docker run -p 80:8080 -p 50000:50000 -d -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+1. set admin password
+    > docker volume inspect jenkins_home
+    > cat /var/lib/docker/jenkins_home/_data/secret/initialAdminPassword
+
+## Fundamentals
+
+![alt text](images/jenkins-user-roles.png)
