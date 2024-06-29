@@ -1,10 +1,16 @@
 # Jenkins (Day 23)
 
-## What is Jenkins ?
+## Fundamentals
+
+### What is Jenkins ?
 
 [`Jenkins`](https://www.jenkins.io/) is an open-source automation server widely used for continuous integration and continuous delivery (CI/CD) in software development. It facilitates the automation of building, testing, and deploying applications, helping teams deliver high-quality software more efficiently.
 
-## install
+![alt text](install-jenkins.png)
+![alt text](images/jenkins-user-roles.png)
+![alt text](jenkis-app-roles.png)
+
+### Install Jenkins as Docker Container
 
 1. open inbound firewall 8080 port
 1. connect to ec2 instance
@@ -23,6 +29,12 @@
     > docker volume inspect jenkins_home
     > cat /var/lib/docker/jenkins_home/_data/secret/initialAdminPassword
 
-## Fundamentals
+## Jobs types in Jenkins
 
-![alt text](images/jenkins-user-roles.png)
+## Docker inside Jenkins
+
+1.
+1.
+1.
+1.
+1.
