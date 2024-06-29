@@ -6,9 +6,9 @@
 
 [`Jenkins`](https://www.jenkins.io/) is an open-source automation server widely used for continuous integration and continuous delivery (CI/CD) in software development. It facilitates the automation of building, testing, and deploying applications, helping teams deliver high-quality software more efficiently.
 
-![alt text](install-jenkins.png)
+![alt text](images/install-jenkins.png)
 ![alt text](images/jenkins-user-roles.png)
-![alt text](jenkis-app-roles.png)
+![alt text](images/jenkis-app-roles.png)
 
 ### Install Jenkins as Docker Container
 
