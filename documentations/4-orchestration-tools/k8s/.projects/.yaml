@@ -5,8 +5,8 @@ metadata:
   name: mongodb-credentials
 type: Opaque
 data:
-  username: eW91ci11c2VybmFtZQ==
-  password: eW91ci1wYXNzd29yZA==
+  mongo-root-username: eW91ci11c2VybmFtZQ==
+  mongo-root-password: eW91ci1wYXNzd29yZA==
 
 # configmap.yaml
 ---
@@ -52,6 +52,20 @@ spec:
               name: mongodb-credentials
               key: mongo-root-password
 
+# mongodb-service.yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-service
+spec:
+  type: ClusterIP # default
+  selector:
+    app: mongodb
+  ports:
+  - protocol: TCP
+    port: 27017
+    targetPort: 27017
 # mongo-express-deployment.yaml
 ---
 apiVersion: apps/v1
@@ -67,41 +81,31 @@ spec:
       app: mongo-express
   template:
     metadata:
-    labels:
-      app: mongo-express
+      labels:
+        app: mongo-express
     spec:
-    containers:
-    - name: mongo-express
-      image: mongo-express:latest
-      ports:
-      - containerPort: 8081
-      env:
-      - name: ME_CONFIG_MONGODB_ADMINUSERNAME
-        valueFrom:
-          secretKeyRef:
-          name: mongodb-credentials
-          key: mongo-root-username
-      - name: ME_CONFIG_MONGODB_ADMINPASSWORD
-        valueFrom:
-          secretKeyRef:
-            name: mongodb-credentials
-            key: mongo-root-password
-      - name: ME_CONFIG_MONGODB_SERVER
-        value: mongodb-service
+      containers:
+      - name: mongo-express
+        image: mongo-express:latest
+        ports:
+        - containerPort: 8081
+        env:
+        - name: ME_CONFIG_MONGODB_ADMINUSERNAME
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-credentials
+              key: mongo-root-username
+        - name: ME_CONFIG_MONGODB_ADMINPASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-credentials
+              key: mongo-root-password
+        - name: ME_CONFIG_MONGODB_SERVER
+          valueFrom:
+            configMapKeyRef:
+              name: mongo-express-configmap
+              key: database_url
 
-# mongodb-service.yaml
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: mongodb-service
-spec:
-  selector:
-    app: mongodb
-  ports:
-  - protocol: TCP
-    port: 27017
-    targetPort: 27017
 
 # mongo-express-service.yaml
 ---
