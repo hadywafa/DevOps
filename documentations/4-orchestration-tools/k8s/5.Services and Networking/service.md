@@ -2,6 +2,28 @@
 
 In Kubernetes, a Service is an abstraction that defines a logical set of Pods and a policy by which to access them. Services enable communication between different parts of an application and external clients without exposing the underlying details of the Pod's location.
 
+## Key Concepts
+
+![alt text](../images/cluster-ip-service.png)
+![alt text](../images/cluster-ip-service-2.png)
+![alt text](../images/selector-vs-labels.png)
+![alt text](../images/cluster-ip-service-3.png)
+![alt text](../images/cluster-ip-service-4.png)
+![alt text](../images/multi-port-services.png)
+![alt text](../images/nodePort-1.png)
+![alt text](../images/nodePort-2.png)
+![alt text](../images/loadBalancer-service.png)
+![alt text](../images/production-services.png)
+
+- pods are identified by labels
+- services select pods based on labels and register them as endpoints.
+- service has a stable IP address and DNS name
+- service can be accessed by other pods in the cluster
+- kube-proxy keeps track of which pods are members of the service and routes traffic to them
+- kube-proxy is a network proxy that runs on each node in the cluster
+- loadBalancer service is an extension of NodePort service
+- nodePort service is an extension of ClusterIP service
+
 ## Why Services are Important
 
 - **Dynamic Pod Management**: Pods are ephemeral and can be created, destroyed, and recreated dynamically. Services provide a stable endpoint for accessing these Pods, even as they change over time.
