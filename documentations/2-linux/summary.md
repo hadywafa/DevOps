@@ -78,3 +78,12 @@
 - `date`: Display or set the system date and time.
 - `shutdown`: Shut down or restart the system.
 - `reboot`: Reboot the system.
+
+## Container root password
+
+Docker containers typically do not have a root password set by default. This is because containers are designed to be lightweight and secure, and root access is usually managed through the host system. Here are a few key points:
+
+- No Default Root Password: Most Docker images, including Ubuntu, do not come with a root password set. This is why you encounter an “Authentication failure” when trying to use su -.
+
+- Accessing Root: You can access the root user directly from the host system using:
+  docker exec
