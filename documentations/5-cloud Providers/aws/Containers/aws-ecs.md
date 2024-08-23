@@ -1,6 +1,6 @@
 # Amazon Elastic Container Service (Amazon ECS)
 
-![alt text](./.images/aws-orchestration-tools.png)
+![alt text](images/aws-orchestration-tools.png)
 
 ## Types of ECS
 
