@@ -46,7 +46,7 @@ sudo apt-mark hold kubectl
 
 ### 1. Configure Kubectl configuration
 
-![alt text](image.png)
+![alt text](images/kubeconfig.png)
 
 #### kubectl provides a way to connect to a cluster using:
 
