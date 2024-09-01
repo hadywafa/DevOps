@@ -1,9 +1,8 @@
-
 # Kubernetes Overview
 
 ## Deployment Evolution
 
-![alt text](../images/containers.png)
+![alt text](images/containers.png)
 
 ### Traditional Deployment
 

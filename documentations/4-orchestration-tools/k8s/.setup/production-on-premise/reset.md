@@ -1,4 +1,6 @@
-To completely remove and stop everything related to `kubeadm init` and Kubernetes on your system, you can follow these steps:
+# Resetting a Kubernetes Cluster
+
+## Remove Kubernetes Components and Reset `kubeadm init`
 
 ### 1. **Stop and Disable Kubernetes Services**
 

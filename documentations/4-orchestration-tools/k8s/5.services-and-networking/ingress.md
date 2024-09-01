@@ -8,20 +8,20 @@ In Kubernetes, an Ingress is an API object that manages external access to servi
 2. **Ingress Controller**: Implements the Ingress resources by configuring a load balancer to route traffic based on the Ingress rules.
 
 - ingress is just routing to services inside cluster.
-    ![alt text](../images/ingress-controller-1.png)
+  ![alt text](images/ingress-controller-1.png)
 
 - load balancer is just a proxy server that forwards requests to services inside cluster.
-    ![alt text](../images/ingress-controller-2.png)
+  ![alt text](images/ingress-controller-2.png)
 
-- you can implement your own load balancer server (proxy server) either inside or outside the cluster using Bar Metal to route  requests  to services inside the cluster.
-    ![alt text](../images/ingress-controller-3.png)
+- you can implement your own load balancer server (proxy server) either inside or outside the cluster using Bar Metal to route requests to services inside the cluster.
+  ![alt text](images/ingress-controller-3.png)
 
 - multiple sub domains can be used to route requests to different services inside the cluster.
-    ![alt text](../images/ingress-controller-4.png)
+  ![alt text](images/ingress-controller-4.png)
 
 - configure tls/ssl certificates for secure communication.
-    ![alt text](../images/ingress-controller-5.png)
-    ![alt text](../images/ingress-controller-6.png)
+  ![alt text](images/ingress-controller-5.png)
+  ![alt text](images/ingress-controller-6.png)
 
 ## Why Use Ingress?
 
@@ -60,124 +60,124 @@ This command deploys the NGINX Ingress Controller in your cluster.
 
 - frontend-deployment.yaml
 
-    ```yaml
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-    name: frontend-deployment
-    spec:
-    replicas: 3
-    selector:
-        matchLabels:
-        app: frontend
-    template:
-        metadata:
-        labels:
-            app: frontend
-        spec:
-        containers:
-            - name: frontend
-            image: my-frontend-image
-            ports:
-                - containerPort: 80
-    ---
-    apiVersion: v1
-    kind: Service
-    metadata:
-    name: frontend-service
-    spec:
-    selector:
-        app: frontend
-    ports:
-        - protocol: TCP
-        port: 80
-        targetPort: 80
-    ```
+  ```yaml
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+  name: frontend-deployment
+  spec:
+  replicas: 3
+  selector:
+      matchLabels:
+      app: frontend
+  template:
+      metadata:
+      labels:
+          app: frontend
+      spec:
+      containers:
+          - name: frontend
+          image: my-frontend-image
+          ports:
+              - containerPort: 80
+  ---
+  apiVersion: v1
+  kind: Service
+  metadata:
+  name: frontend-service
+  spec:
+  selector:
+      app: frontend
+  ports:
+      - protocol: TCP
+      port: 80
+      targetPort: 80
+  ```
 
 - backend-deployment.yaml
 
-    ```yaml
-    apiVersion: apps/v1
-    kind: Deployment
-    metadata:
-    name: backend-deployment
-    spec:
-    replicas: 3
-    selector:
-        matchLabels:
-        app: backend
-    template:
-        metadata:
-        labels:
-            app: backend
-        spec:
-        containers:
-            - name: backend
-            image: my-backend-image
-            ports:
-                - containerPort: 80
-    ---
-    apiVersion: v1
-    kind: Service
-    metadata:
-    name: backend-service
-    spec:
-    selector:
-        app: backend
-    ports:
-        - protocol: TCP
-        port: 80
-        targetPort: 80
-    ```
+  ```yaml
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+  name: backend-deployment
+  spec:
+  replicas: 3
+  selector:
+      matchLabels:
+      app: backend
+  template:
+      metadata:
+      labels:
+          app: backend
+      spec:
+      containers:
+          - name: backend
+          image: my-backend-image
+          ports:
+              - containerPort: 80
+  ---
+  apiVersion: v1
+  kind: Service
+  metadata:
+  name: backend-service
+  spec:
+  selector:
+      app: backend
+  ports:
+      - protocol: TCP
+      port: 80
+      targetPort: 80
+  ```
 
 - Apply these configurations:
 
-    ```bash
-    kubectl apply -f frontend-deployment.yaml
-    kubectl apply -f backend-deployment.yaml
-    ```
+  ```bash
+  kubectl apply -f frontend-deployment.yaml
+  kubectl apply -f backend-deployment.yaml
+  ```
 
 #### 3. Create an Ingress Resource
 
 - ingress.yaml
 
-    ```yaml
-    apiVersion: networking.k8s.io/v1
-    kind: Ingress
-    metadata:
-    name: example-ingress
-    annotations:
-        nginx.ingress.kubernetes.io/rewrite-target: /
-    spec:
-    rules:
-        - host: example.com
-        http:
-            paths:
-            - path: /frontend
-                pathType: Prefix
-                backend:
-                service:
-                    name: frontend-service
-                    port:
-                    number: 80
-            - path: /backend
-                pathType: Prefix
-                backend:
-                service:
-                    name: backend-service
-                    port:
-                    number: 80
-    tls:
-        - hosts:
-            - example.com
-        secretName: example-tls
-    ```
+  ```yaml
+  apiVersion: networking.k8s.io/v1
+  kind: Ingress
+  metadata:
+  name: example-ingress
+  annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /
+  spec:
+  rules:
+      - host: example.com
+      http:
+          paths:
+          - path: /frontend
+              pathType: Prefix
+              backend:
+              service:
+                  name: frontend-service
+                  port:
+                  number: 80
+          - path: /backend
+              pathType: Prefix
+              backend:
+              service:
+                  name: backend-service
+                  port:
+                  number: 80
+  tls:
+      - hosts:
+          - example.com
+      secretName: example-tls
+  ```
 
 - Apply the Ingress resource:
 
-    ```bash
-    kubectl apply -f ingress.yaml
-    ```
+  ```bash
+  kubectl apply -f ingress.yaml
+  ```
 
 ## Example of Ingress Controller in Minikube
 
@@ -198,16 +198,16 @@ metadata:
   name: dashboard-ingress
 spec:
   rules:
-  - host: dashboard.com
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: kubernetes-dashboard
-            port:
-              number: 80
+    - host: dashboard.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: kubernetes-dashboard
+                port:
+                  number: 80
 ```
 
 ### 3. Apply the Ingress Resource
@@ -224,9 +224,9 @@ kubectl apply -f dashboard-ingress.yaml
    - **Mac/Linux**: `/etc/hosts`
 3. Add the following entry:
 
-    ```text
-    127.0.0.1 dashboard.com
-    ```
+   ```text
+   127.0.0.1 dashboard.com
+   ```
 
 4. Save the hosts file.
 

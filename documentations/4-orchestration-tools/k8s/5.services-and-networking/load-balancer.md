@@ -30,8 +30,8 @@
        app: my-app
      ports:
        - protocol: TCP
-         port: 80        # External Port
-         targetPort: 80  # Pod Port
+         port: 80 # External Port
+         targetPort: 80 # Pod Port
    ```
 
 2. **Provisioning**
@@ -58,7 +58,7 @@
 
 Here's a visual representation to help understand the process:
 
-```
+```ini
                +---------------------------+
                |   Cloud Provider's Load   |
                |          Balancer         |
@@ -154,10 +154,10 @@ Kubernetes typically uses NLBs or ALBs for exposing services.
            app: my-app
        spec:
          containers:
-         - name: my-app
-           image: my-app-image:latest
-           ports:
-           - containerPort: 80
+           - name: my-app
+             image: my-app-image:latest
+             ports:
+               - containerPort: 80
    ```
 
    **Service.yaml:**
@@ -173,9 +173,9 @@ Kubernetes typically uses NLBs or ALBs for exposing services.
      selector:
        app: my-app
      ports:
-     - protocol: TCP
-       port: 80
-       targetPort: 80
+       - protocol: TCP
+         port: 80
+         targetPort: 80
      type: LoadBalancer
    ```
 
@@ -207,6 +207,7 @@ Kubernetes typically uses NLBs or ALBs for exposing services.
 ### Detailed Explanation of AWS Load Balancer Types in Kubernetes
 
 1. **Classic Load Balancer (CLB):**
+
    - **Usage:** Basic load balancing across multiple EC2 instances.
    - **Example Annotation:**
 
@@ -217,6 +218,7 @@ Kubernetes typically uses NLBs or ALBs for exposing services.
      ```
 
 2. **Network Load Balancer (NLB):**
+
    - **Usage:** For high-performance TCP/UDP load balancing, ideal for latency-sensitive applications.
    - **Example Annotation:**
 
@@ -225,6 +227,7 @@ Kubernetes typically uses NLBs or ALBs for exposing services.
      ```
 
 3. **Application Load Balancer (ALB):**
+
    - **Usage:** For HTTP/HTTPS traffic, providing advanced routing features.
    - **Example Annotation:**
 
@@ -238,12 +241,12 @@ Kubernetes typically uses NLBs or ALBs for exposing services.
          alb.ingress.kubernetes.io/scheme: internet-facing
      spec:
        rules:
-       - http:
-           paths:
-           - path: /*
-             backend:
-               serviceName: my-service
-               servicePort: 80
+         - http:
+             paths:
+               - path: /*
+                 backend:
+                   serviceName: my-service
+                   servicePort: 80
      ```
 
 ### Summary

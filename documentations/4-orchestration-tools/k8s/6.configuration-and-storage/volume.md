@@ -1,16 +1,16 @@
 # Volumes in Kubernetes
 
-![alt text](../images/storage-req.png)
-![alt text](../images/pv-1.png)
-![alt text](../images/pv-2.png)
-![alt text](../images/pv-3.png)
-![alt text](../images/loca-vs-remote-volume.png)
-![alt text](../images/pvc.png)
-![alt text](../images/local-volumes-1.png)
-![alt text](../images/local-volumes-2.png)
-![alt text](../images/local-volumes-3.png)
-![alt text](../images/sc-1.png)
-![alt text](../images/sc-2.png)
+![alt text](images/storage-req.png)
+![alt text](images/pv-1.png)
+![alt text](images/pv-2.png)
+![alt text](images/pv-3.png)
+![alt text](images/loca-vs-remote-volume.png)
+![alt text](images/pvc.png)
+![alt text](images/local-volumes-1.png)
+![alt text](images/local-volumes-2.png)
+![alt text](images/local-volumes-3.png)
+![alt text](images/sc-1.png)
+![alt text](images/sc-2.png)
 
 ## Introduction
 
@@ -19,17 +19,20 @@ Persistent Volumes (PVs) in Kubernetes provide a way to manage durable storage r
 ## Key Components and Layers
 
 1. **PersistentVolume (PV)**:
+
    - A resource in the cluster that represents a piece of storage in the cluster.
    - Managed by the Kubernetes administrator.
    - Lifecycle is independent of any individual pod that uses the PV.
    - Can be backed by various storage systems like AWS EBS, NFS, GCE Persistent Disk, etc.
 
 2. **PersistentVolumeClaim (PVC)**:
+
    - A request for storage by a user.
    - Can specify the size and access modes (e.g., ReadWriteOnce, ReadOnlyMany, ReadWriteMany).
    - Binds to a suitable PV, or if none exist, dynamically provisions a new one (if StorageClasses are used).
 
 3. **StorageClass (SC)**:
+
    - Defines a "class" of storage.
    - Provides a way to describe different types of storage and their parameters (like performance characteristics).
    - Used for dynamic provisioning of PVs.
@@ -43,6 +46,7 @@ Persistent Volumes (PVs) in Kubernetes provide a way to manage durable storage r
 ## How Persistent Volumes Work
 
 1. **Static Provisioning**:
+
    - The cluster administrator creates a PV that defines storage details and capabilities.
    - Users create PVCs that request storage.
    - Kubernetes matches the PVC with an appropriate PV based on size and access modes.
@@ -55,14 +59,17 @@ Persistent Volumes (PVs) in Kubernetes provide a way to manage durable storage r
 ## Use Cases
 
 1. **Database Storage**:
+
    - Databases like MySQL, PostgreSQL, and MongoDB require persistent storage for data retention.
    - PVs ensure that data is not lost even if the pod running the database restarts.
 
 2. **Shared Storage**:
+
    - Applications that require shared access to the same data can use PVs with access modes like ReadWriteMany.
    - NFS-backed PVs are commonly used for shared storage scenarios.
 
 3. **Stateful Applications**:
+
    - Applications that maintain state across restarts, such as content management systems, CI/CD tools, and analytics platforms.
    - PVs ensure that application state is preserved.
 
@@ -148,11 +155,11 @@ spec:
   nodeAffinity:
     required:
       nodeSelectorTerms:
-      - matchExpressions:
-        - key: kubernetes.io/hostname
-          operator: In
-          values:
-          - node1
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - node1
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

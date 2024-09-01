@@ -4,7 +4,7 @@
 
 ### nginx controller with cert-manager and Let's Encrypt
 
-![alt text](../images/nginx-controller-https.png)
+![alt text](images/nginx-controller-https.png)
 
 #### cert-manager
 
@@ -20,7 +20,7 @@
 
 ### cloud controller (aws-elb) with ACM
 
-![alt text](../images/aws-elb-https.png)
+![alt text](images/aws-elb-https.png)
 
 #### elb Load Balancer
 
@@ -38,7 +38,7 @@
 
 ### monitoring using nginx controller
 
-![alt text](../images/prometheus-with-nginx.png)
+![alt text](images/prometheus-with-nginx.png)
 
 - can use Prometheus and Grafana with nginx controller
 - use Prometheus to collect metrics from nginx controller
@@ -46,7 +46,7 @@
 
 ### monitoring using cloud controller
 
-![alt text](../images/prometheus-with-cloud-controller.png)
+![alt text](images/prometheus-with-cloud-controller.png)
 
 - can't use Prometheus and Grafana with AWS ELB
 - you can use Prometheus but it will be a bit complex to setup and so expensive

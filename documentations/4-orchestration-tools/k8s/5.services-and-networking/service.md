@@ -4,16 +4,16 @@ In Kubernetes, a Service is an abstraction that defines a logical set of Pods an
 
 ## Key Concepts
 
-![alt text](../images/cluster-ip-service.png)
-![alt text](../images/cluster-ip-service-2.png)
-![alt text](../images/selector-vs-labels.png)
-![alt text](../images/cluster-ip-service-3.png)
-![alt text](../images/cluster-ip-service-4.png)
-![alt text](../images/multi-port-services.png)
-![alt text](../images/nodePort-1.png)
-![alt text](../images/nodePort-2.png)
-![alt text](../images/loadBalancer-service.png)
-![alt text](../images/production-services.png)
+![alt text](images/cluster-ip-service.png)
+![alt text](images/cluster-ip-service-2.png)
+![alt text](images/selector-vs-labels.png)
+![alt text](images/cluster-ip-service-3.png)
+![alt text](images/cluster-ip-service-4.png)
+![alt text](images/multi-port-services.png)
+![alt text](images/nodePort-1.png)
+![alt text](images/nodePort-2.png)
+![alt text](images/loadBalancer-service.png)
+![alt text](images/production-services.png)
 
 - pods are identified by labels
 - services select pods based on labels and register them as endpoints.
@@ -35,6 +35,7 @@ In Kubernetes, a Service is an abstraction that defines a logical set of Pods an
 Kubernetes supports several types of Services, each suited for different use cases:
 
 1. **ClusterIP (default)**
+
    - **Description**: Exposes the Service on a cluster-internal IP from node ip range. This means the Service is only accessible from within the cluster.
    - **Use Case**: Ideal for internal communication between Pods.
    - **Example**:
@@ -55,6 +56,7 @@ Kubernetes supports several types of Services, each suited for different use cas
      ```
 
 2. **NodePort**
+
    - **Description**: Exposes the Service on each Node's IP at a static port (the NodePort). A ClusterIP Service, to which the NodePort Service routes, is automatically created.
    - **Use Case**: Enables access to the Service from outside the cluster by accessing any Node's IP address and the specific NodePort.
    - **Example**:
@@ -76,6 +78,7 @@ Kubernetes supports several types of Services, each suited for different use cas
      ```
 
 3. **LoadBalancer**
+
    - **Description**: Exposes the Service externally using a cloud provider's load balancer. The cloud provider assigns an external IP address to the Service.
    - **Use Case**: Ideal for services that need to be accessible from outside the cluster, with built-in load balancing provided by the cloud provider.
    - **Example**:
@@ -96,6 +99,7 @@ Kubernetes supports several types of Services, each suited for different use cas
      ```
 
 4. **ExternalName**
+
    - **Description**: Maps a Service to a DNS name, returning a CNAME record with the specified name.
    - **Use Case**: Useful for integrating external services by using Kubernetes-native Service names.
    - **Example**:
@@ -113,10 +117,12 @@ Kubernetes supports several types of Services, each suited for different use cas
 ## Example Scenarios
 
 1. **Internal Communication (ClusterIP)**
+
    - An internal service, like a backend API, accessible only within the cluster.
    - Pods can communicate with this service using its DNS name, e.g., `my-service.default.svc.cluster.local`.
 
 2. **External Traffic Handling (LoadBalancer)**
+
    - A public-facing web application.
    - Users access the application via the external IP provided by the cloud load balancer.
 
@@ -127,14 +133,17 @@ Kubernetes supports several types of Services, each suited for different use cas
 ## Benefits and Use Cases
 
 1. **ClusterIP**
+
    - **Benefits**: Simple, internal-only access; easy to manage.
    - **Use Cases**: Internal microservices, backend systems.
 
 2. **NodePort**
+
    - **Benefits**: External access without a load balancer; useful for debugging.
    - **Use Cases**: Development, testing, or limited external access needs.
 
 3. **LoadBalancer**
+
    - **Benefits**: External access with built-in load balancing.
    - **Use Cases**: Production services requiring high availability and scalability.
 
