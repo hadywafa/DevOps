@@ -28,79 +28,51 @@ If the directory `/etc/systemd/system/kubelet.service.d/` does not exist, you ca
 
 Here’s how you can disable the cgroup driver for `kubelet` by modifying the correct configuration:
 
-## Solution 2 => Steps to Disable Cgroups for Kubelet
+## Solution 2 => Enable the cgroup driver for kubelet
 
-To disable cgroup for the kubelet service, you'll need to modify the kubelet configuration file, specifically the kubelet systemd service options. Here's how you can do it:
+- **Cgroups (Control Groups)** are a Linux kernel feature that `kubelet` uses to manage resource allocation (like CPU and memory) for containers. If cgroups are not properly configured or disabled, the `kubelet` will not be able to manage resources correctly, leading to an unhealthy state.
 
-### Option 1: Create the `kubelet.service.d` Directory and Config
+- Kubernetes relies on cgroups to ensure the containers on a node are running in isolation with resource limits. If the required cgroups are not available, `kubelet` will fail or become "unhealthy."
 
-1. **Create the directory**:
+- **Steps to resolve this:**
 
-   If the directory doesn’t exist, create it using the following command:
+  - Ensure that the correct `cgroup` driver is enabled for `kubelet`. You can check what driver is being used by running:
 
-   ```bash
-   sudo mkdir -p /etc/systemd/system/kubelet.service.d/
-   ```
+    ```bash
+    sudo cat /var/lib/kubelet/config.yaml | grep cgroupDriver
+    ```
 
-2. **Create a new configuration file**:
+  - If you need to set the `cgroup` driver, you can specify it in the `kubelet` configuration by editing `/var/lib/kubelet/config.yaml` and setting:
 
-   Create a new drop-in file to configure `kubelet` options:
+    ```yaml
+    cgroupDriver: systemd # or 'cgroupfs' depending on your system
+    ```
 
-   ```bash
-   sudo nano /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
-   ```
+  - After editing, restart the `kubelet`:
 
-3. **Add the `--cgroup-driver=none` option**:
+    ```bash
+    sudo systemctl restart kubelet
+    ```
 
-   Add the following content to the file:
+  - If your system uses `systemd`, you might need to enable it by editing the `kubelet` configuration file or setting the correct options in your container runtime (like `containerd` or `Docker`).
 
-   ```bash
-   [Service]
-   Environment="KUBELET_EXTRA_ARGS=--cgroup-driver=none"
-   ```
+### Additional Considerations
 
-4. **Reload systemd and restart `kubelet`**:
+- Ensure that your node has the required cgroups enabled. You can check this by verifying the cgroup subsystems supported on your system:
 
-   ```bash
-   sudo systemctl daemon-reload
-   sudo systemctl restart kubelet
-   ```
+  ```bash
+  lssubsys -a
+  ```
 
-### Option 2: Modify the Main `kubelet` Service File
+  You should see something like:
 
-If modifying the `kubelet` drop-in config is not possible, you can try editing the main `kubelet` service file.
+  ```bash
+  cpu
+  cpuacct
+  cpuset
+  memory
+  ```
 
-1. **Edit the `kubelet.service` file**:
+- If `cgroup` subsystems are missing or disabled, you might need to configure your kernel to enable them, or fix the container runtime (`Docker` or `containerd`) configuration to match Kubernetes’ requirements.
 
-   The `kubelet` service file is typically located at `/usr/lib/systemd/system/kubelet.service`.
-
-   Open it for editing:
-
-   ```bash
-   sudo nano /usr/lib/systemd/system/kubelet.service
-   ```
-
-2. **Modify the `ExecStart` line**:
-
-   Find the line that starts with `ExecStart=` and add the `--cgroup-driver=none` option to it:
-
-   ```bash
-   ExecStart=/usr/bin/kubelet --cgroup-driver=none <other kubelet options>
-   ```
-
-3. **Reload systemd and restart `kubelet`**:
-
-   ```bash
-   sudo systemctl daemon-reload
-   sudo systemctl restart kubelet
-   ```
-
-4. **Verify the changes**:
-
-   Ensure the changes are applied by checking the `kubelet` status:
-
-   ```bash
-   systemctl status kubelet
-   ```
-
-Let me know if this resolves your issue or if you need further assistance!
+If you're still facing issues after checking these steps, feel free to ask for further guidance!
