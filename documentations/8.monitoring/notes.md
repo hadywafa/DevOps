@@ -1,18 +1,19 @@
 # Notes
 
-+ Nagios is a powerful and widely used tool for monitoring various aspects of IT infrastructure, including web applications. However, if you specifically want a solution with a GUI web interface for monitoring web applications, you might also consider other tools that are known for their user-friendly interfaces. Here are a couple of alternatives:
+## Monitoring with Prometheus and Grafana
 
-## Prometheus with Grafana
+### monitoring using nginx controller
 
-+ `Prometheus`: An open-source monitoring and alerting toolkit designed for reliability and scalability. It excels at monitoring dynamic, cloud-native environments.
-+ `Grafana`:  popular open-source platform for analytics and monitoring. Grafana can be integrated with Prometheus to create visually appealing dashboards.
+![alt text](images/prometheus-with-nginx.png)
 
-### Advantages
+- can use Prometheus and Grafana with nginx controller
+- use Prometheus to collect metrics from nginx controller
+- use Grafana to visualize and analyze metrics
 
-+ Modern and user-friendly interface.
-+ Well-suited for containerized environments.
-+ Strong community support.
+### Monitoring using cloud controller
 
-### Considerations
+![alt text](images/prometheus-with-cloud-controller.png)
 
-+ It may have a steeper learning curve compared to simpler tools.
+- can't use Prometheus and Grafana with AWS ELB
+- you can use Prometheus but it will be a bit complex to setup and so expensive
+- instead use CloudWatch for monitoring and use AWS X-Ray for tracing
