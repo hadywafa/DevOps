@@ -78,3 +78,55 @@ Get the IP of the nginx-resolver pod and replace the dots(.) with hyphon(-) whic
 kubectl get pod nginx-resolver -o wide
 kubectl run test-nslookup --image=busybox:1.28 --rm -it --restart=Never -- nslookup <P-O-D-I-P.default.pod> > /root/CKA/nginx.pod
 ```
+
+## Take Care of How set env for containers `-_-`
+
+```yaml
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multi-pod
+spec:
+  containers:
+    - image: nginx
+      name: alpha
+      env:
+        - name: name
+          value: alpha
+    - image: busybox
+      name: beta
+      command: ["sleep", "4800"]
+      env:
+        - name: name
+          value: beta
+```
+
+> Here is the record of env set by `name`:<you-env-name> , `value`:<your-env-value>
+
+## How to test service account RBAC
+
+```bash
+kubectl auth can-i list pv --as=system:serviceaccount:default:pvviewer
+```
+
+## NetworkPolicy: Applied to All sources (Incoming traffic from all pods)?
+
+```yaml
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-to-nptest
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      run: np-test-1
+  policyTypes:
+    - Ingress
+  ingress:
+    - ports:
+        - protocol: TCP
+          port: 80
+```
