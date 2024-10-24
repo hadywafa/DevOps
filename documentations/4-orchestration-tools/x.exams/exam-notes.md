@@ -130,3 +130,11 @@ spec:
         - protocol: TCP
           port: 80
 ```
+
+## Review Command Section under pod definition
+
+you have problem of execution order for command parameters in k8s pod definition
+
+## you need to focus which nodes to save your answers
+
+`PUT YOU ANSWER IN CORRECT PLACE BITCH 🥴`
