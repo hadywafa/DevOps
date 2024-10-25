@@ -138,3 +138,44 @@ you have problem of execution order for command parameters in k8s pod definition
 ## you need to focus which nodes to save your answers
 
 `PUT YOU ANSWER IN CORRECT PLACE BITCH 🥴`
+
+## VIP Flags
+
+1. `--sort-by=.status.podIP`
+1. `--no-header`
+1. `k top node --context=cluster1 --no-headers | sort -nr -k4 | head -1`
+1. `k top po -A --context=cluster1 --no-headers | sort -nr -k4 | head -1`
+
+## Take you time reading the pod logs
+
+1. `may problem in Memory`
+   - Initializing buffer pool, size = 128.0M
+     Killed
+
+## to execute script inside po you can use
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: looper-cka16-arch
+spec:
+  containers:
+    - name: busybox
+      image: busybox
+      command: ["/bin/sh", "-c", "while true; do echo hello; sleep 10;done"]
+```
+
+## use event for troubleshooting
+
+```bash
+kubectl get event --field-selector involvedObject.name=demo-pod-cka29-trb
+```
+
+```bash
+kubectl get event --field-selector involvedObject.name=demo-pvc-cka29-trb
+```
+
+## Make sure the pvc is mounted to pv
+
+![alt text](images/events-troubleshooting.png)
