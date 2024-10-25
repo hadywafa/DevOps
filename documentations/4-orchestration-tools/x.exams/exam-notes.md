@@ -179,3 +179,55 @@ kubectl get event --field-selector involvedObject.name=demo-pvc-cka29-trb
 ## Make sure the pvc is mounted to pv
 
 ![alt text](images/events-troubleshooting.png)
+
+## Please specific the container to get logs from
+
+```bash
+kubectl logs blue-dp-cka09-trb-xxxx -c init-container
+```
+
+## Using subPath in Volumes
+
+In Kubernetes, the `subPath` field allows you to **specify a specific path within a volume** to mount into your container, rather than mounting the entire volume. This is useful when you want to mount only part of the volume to your container or when multiple containers need access to different parts of the same volume.
+
+### **Why use `subPath`?**
+
+- **Selective mounting**: If a volume contains multiple directories/files and you only need one of them.
+- **Avoid conflicts**: When multiple containers share the same volume but need isolated subdirectories.
+- **Data persistence per container**: For containers that write to different directories within the same volume (for example, logs).
+
+### **Example Use Case of `subPath`:**
+
+Let’s say you have a volume containing multiple configuration files. You only need a specific file to be mounted inside your container.
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: subpath-example
+spec:
+  containers:
+    - name: busybox-container
+      image: busybox
+      command: ["/bin/sh", "-c", "cat /config/app-config.yaml && sleep 3600"]
+      volumeMounts:
+        - name: config-volume
+          mountPath: /config/app-config.yaml
+          subPath: app-config.yaml # Mount only this file
+  volumes:
+    - name: config-volume
+      configMap:
+        name: my-config
+```
+
+> 1. **Volume (`config-volume`)**: This volume is backed by a ConfigMap, which contains multiple files, including `app-config.yaml`.
+> 2. **Mount Path (`/config/app-config.yaml`)**: Instead of mounting the entire volume, only the **`app-config.yaml`** file is mounted at this path.
+> 3. **`subPath`**: The `subPath` ensures that only this specific file from the volume is available in the container.
+
+> Without `subPath`, the whole volume would be mounted, including other files or directories that the container may not need.
+
+### **When to Use `subPath`?**
+
+1. **Log separation**: Different containers writing logs to different directories inside a shared volume.
+2. **Configuration management**: Mounting individual configuration files instead of the entire ConfigMap or volume.
+3. **Persistent storage**: Each container using a different subdirectory of a volume for its data.
