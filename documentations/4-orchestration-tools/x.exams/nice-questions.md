@@ -2,5 +2,20 @@
 
 ## Q1
 
-![alt text](q1.png)
-![alt text](q1-solution.png)
+![alt text](images/q1.png)
+![alt text](images/q1-solution.png)
+
+## Q2
+
+![alt text](images/q2.png)
+![alt text](images/q2-solution.png)
+
+## Q3
+
+![alt text](images/q3.png)
+![alt text](images/q3-solution.png)
+
+## Q4
+
+![alt text](images/q4.png)
+![alt text](images/q4-solution.png)
