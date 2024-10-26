@@ -302,3 +302,59 @@ spec:
 1. **Log separation**: Different containers writing logs to different directories inside a shared volume.
 2. **Configuration management**: Mounting individual configuration files instead of the entire ConfigMap or volume.
 3. **Persistent storage**: Each container using a different subdirectory of a volume for its data.
+
+## Focus on question specefication
+
+## Read about annotations for ingress
+
+```yaml
+# key annotations
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress-cka04-svcn
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: nginx-service-cka04-svcn
+                port:
+                  number: 80
+```
+
+## How to Create PV into specific node
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: coconut-pv-cka01-str
+  labels:
+    storage-tier: gold
+spec:
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteMany
+  hostPath:
+    path: /opt/coconut-stc-cka01-str
+  storageClassName: coconut-stc-cka01-str
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - cluster1-node01
+```
+
+## Please test every fucked question you solve
+
+## Please Focus which namespace you are going to create the resources
