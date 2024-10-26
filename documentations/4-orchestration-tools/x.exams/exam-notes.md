@@ -139,6 +139,77 @@ you have problem of execution order for command parameters in k8s pod definition
 
 `PUT YOU ANSWER IN CORRECT PLACE BITCH 🥴`
 
+## kubectl top node
+
+```bash
+kubectl top node --context cluster1 --no-headers | sort -nr -k2 | head -1
+```
+
+### **Purpose**
+
+Identify **which Kubernetes node** in the **`cluster1`** context is **currently using the most CPU resources**.
+
+### **Breakdown of Each Component**
+
+#### **1. `kubectl top node`**
+
+- **Function:**  
+  Retrieves **real-time resource usage** metrics (CPU and memory) for all nodes in the Kubernetes cluster.
+
+- **Output Example:**
+
+  ```ini
+  NAME        CPU(cores)   CPU%   MEMORY(bytes)   MEMORY%
+  node-1      500m         25%    2Gi             50%
+  node-2      750m         37.5%  3Gi             75%
+  node-3      250m         12.5%  1Gi             25%
+  ```
+
+#### **2. `--context cluster1`**
+
+- **Function:**  
+  Specifies the **Kubernetes cluster context** to target. This is useful when managing multiple clusters.
+
+- **Usage:**  
+  Targets the cluster configuration named **`cluster1`** from your Kubernetes configuration file (typically located at `~/.kube/config`).
+
+#### **3. `--no-headers`**
+
+- **Function:**  
+  **Excludes** the **header row** from the output, providing only the data lines.
+
+- **Benefit:**  
+  Simplifies the output for further processing with other command-line tools.
+
+#### **4. `|` (Pipe Operator)**
+
+- **Function:**  
+  Passes the **output** of the command on the **left** (`kubectl top node ...`) as **input** to the command on the **right** (`sort ...`).
+
+- **Usage:**  
+  Enables chaining of commands to process data sequentially.
+
+#### **5. `sort -nr -k2`**
+
+- **Function:**  
+  Sorts the input data **numerically** and in **descending** order based on the **second column**.
+
+- **Parameters:**
+  - **`-n`:**  
+    Sorts the data **numerically** instead of lexicographically.
+  - **`-r`:**  
+    Sorts the data in **reverse (descending)** order.
+  - **`-k2`:**  
+    Specifies that the **second field (column)** is the key for sorting. In the `kubectl top node` output, the second column represents **CPU usage in cores**.
+
+#### **6. `head -1`**
+
+- **Function:**  
+  **Displays only the first line** of the input it receives.
+
+- **Usage:**  
+  After sorting, it selects the **top entry**, which corresponds to the node with the **highest CPU usage**.
+
 ## VIP Flags
 
 1. `--sort-by=.status.podIP`
