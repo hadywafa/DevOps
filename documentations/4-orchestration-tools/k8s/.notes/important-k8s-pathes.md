@@ -7,4 +7,3 @@
 ## Containerd
 
 1. `/etc/containerd/config.toml`
-
