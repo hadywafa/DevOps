@@ -4,8 +4,8 @@ High Availability (HA) ensures that your applications and services remain access
 
 ## Availability Set
 
-![Availability Set Diagram](vm-availability-set-1.png)
-![Fault and Update Domains](vm-availability-set-2.png)
+![Availability Set Diagram](images/vm-availability-set-1.png)
+![Fault and Update Domains](images/vm-availability-set-2.png)
 
 ### What is an Availability Set?
 
@@ -28,7 +28,7 @@ Ideal for multi-tier applications where different roles (e.g., web servers, data
 
 ## Availability Zone
 
-![Availability Zone Diagram](vm-az.png)
+![Availability Zone Diagram](images/vm-az.png)
 
 ### What is an Availability Zone?
 
@@ -50,7 +50,7 @@ Best suited for mission-critical applications that require maximum uptime and re
 
 ## Proximity Placement Group
 
-![Proximity Placement Group Diagram](vm-plg.png)
+![Proximity Placement Group Diagram](images/vm-plg.png)
 
 ### What is a Proximity Placement Group?
 
