@@ -1,0 +1,13 @@
+# AWS EC2
+
+## Notes
+
+### EBS
+
+EBS (Elastic Block Store) in AWS can be thought of as a full virtual hard drive that you attach to your EC2 instance. It's not just a part of a physical drive split into partitions; it's more like a whole, separate drive that AWS manages in the cloud.
+
+When you create an EBS volume, it acts as an independent storage device, providing you with flexibility and isolation from the underlying hardware. You can then attach this volume to an EC2 instance and use it just like you would use a physical drive on your computer.
+
+
+the OS data for an EC2 instance is stored on the EBS volume, which acts like the main hard drive for the instance. This setup provides reliability and flexibility for managing your instance's storage needs.
+
