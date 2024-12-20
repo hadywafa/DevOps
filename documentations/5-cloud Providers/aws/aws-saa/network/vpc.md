@@ -81,11 +81,32 @@
 
 #### **7. Security Groups**
 
-asd
+![alt text](images/nsg-0.png)
+![alt text](images/nsg-1.png)
+![alt text](images/nsg-2.png)
+![alt text](images/nsg-3.png)
+
+1. NSG is a **virtual firewall** that applies at the instance's ENI level.
+1. NSGs are `stateful`.
+1. **NSG is Whitelisting type**
+1. **No deny rules:** In a NSG we can configure permit rules only.
+1. **Order is not critical:** All rules are in NSG are evaluated to find a permit.
+1. Up to 16 (5 is default) NSGs can be attached per ec2 ENI
+1. It has an implicit deny rule at the end.
+1. Changes made take effect immediately.
 
 #### **8. Network Access Control List (Network ACLs)**
 
-asd
+![alt text](images/nacl-0.png)
+
+1. A Network ACL functions at a subnet level.
+1. It is applied at the implied router level.
+1. NACLs are `stateless`.
+1. It can include permit and deny rules.
+1. Each NACL rule has a sequence number.
+1. Rules are evaluated from lowest to
+   highest sequence number.
+1. It ends with an explicit deny any rule
 
 ### **Hybrid Cloud Connectivity**
 
@@ -111,6 +132,17 @@ asd
 #### **Notes**
 
 > You can use combination of these methods to make your connection more secure and fast.
+
+### **NSGs vs NACLs**
+
+| **Feature**              | **Security Groups**                                                                                | **Network Access Control Lists (NACLs)**                                                  |
+| ------------------------ | -------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| **Operation Level**      | Operates at the Instance (ENI) level as the first layer of defense (from EC2 instance perspective) | Operates at the subnet level as a second layer of defense (from EC2 instance perspective) |
+| **Supported Rules**      | Supports allow rules only                                                                          | Supports allow and deny rules                                                             |
+| **Filtering Scope**      | Filtering applies to instances communicating within a subnet                                       | Filtering does not apply to instances communicating within a subnet                       |
+| **Statefulness**         | Is Stateful                                                                                        | Is Stateless                                                                              |
+| **Rule Evaluation**      | All rules are evaluated before a decision is made                                                  | Rules are processed in order until a match is found (from lower to higher rule number)    |
+| **Scope of Application** | Applies only to instances where the security group is associated/applied                           | Applies to all instances in the subnet(s) where the NACL is applied                       |
 
 ## Questions
 
